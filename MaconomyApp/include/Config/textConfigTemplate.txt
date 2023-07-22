@@ -1,0 +1,51 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# This is a template for how the config text file
+# should be setup.
+#
+# Empty lines and lines starting with '#' will be ignored
+# by the importer.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# # File paths.
+#
+# Defines the paths to the different files (time log file, log file).
+# These definitions should start with the header 'FILEPATHS'.
+#
+# The time log file is the first valid line after the header.
+# The log file is the second valid line after the header.
+#
+# Example:
+#
+# FILEPATHS
+# c:/folder/timeLogFile.txt
+# c:/folder/logFile.txt
+#
+# # # # # # # #
+
+# # Defaults.
+#
+# Defines default Maconomy arguments.
+# Currently only Spec3 is supported.
+#
+# These definitions should start with the header 'DEFAULTS'.
+#
+# Spec3 is the first valid line after the header.
+#
+# Example:
+#
+# DEFAULTS
+# Developer
+
+# # Definitions.
+#
+# Defines the mapping between the local job/task names to the
+# Maconomy job/task names.
+# These definitions should start with the header 'DEFINITIONS' and
+# each argument should be tab-separated.
+#
+# Example:
+#
+# DEFINITIONS
+# SE	Jira	12345678	Programming
+# # # # # #	# #

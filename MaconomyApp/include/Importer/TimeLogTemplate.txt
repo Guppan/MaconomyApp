@@ -1,0 +1,73 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# This is a template for the time log.
+# Contains information about how the time log should
+# be structured in order for the program to import it
+# successfully.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# # Weekday entries
+#
+# Defines the day of the week. Time line entries following this entry
+# will be put under that weekday in Maconomy.
+#
+# Valid values are: mandag, tisdag, onsdag, torsdag, fredag
+#
+# Example:
+#
+# mandag
+#
+# # # # # # # # #
+
+# # Time line entry
+#
+# Defines an entry in the time log.
+# Each argument should be tab-separated.
+# Structure is:
+#
+# <Daily description>	<Job name>	<Task name>   <Time intervals>  [Spec3] [Processed]
+#
+# Arguments enclosed with '[]' are optional.
+#
+# <Daily description> : This is the daily description which will show up in Maconomy.
+#
+# <Job name> : This should be the local job name as defined by the config file.
+#			   Can be specified as either one job or two jobs (split) with space-separation.
+#			   Example:
+#					Simple job:	SE
+#					Split job : SE NO
+#
+#
+# <Task name> : This is the local task name as defined by the config.
+#
+# <Time interval> : These are time intervals specifying the time worked on each task.
+#					Multiple intervals can be specified on the same row.
+#					They should be tab-separated.
+#					Example: 10:00 - 13:00	14:00 - 16:00
+#
+# [Spec3] : Optional, specifies the Spec3 for the given row. If none is provided
+#			the default one specified in the config file is used.
+#
+# [Processed] : Dictates wheter this row has already been processed by the program or not.
+#				Usually this should be omitted, it's the program's responsibility to
+#				fill this in after the import.
+#				Rows with this specified will NOT be processed by the program.
+#				Values should be: X or x
+#
+#
+# Example:
+#
+# JOB-0001	SE	Jira	08:00 - 09:00	11:30 - 12:00
+#
+# # # # # # # #
+
+# # Example time log with comments
+#
+# torsdag
+# JOB-0001	SE	Jira	08:00 - 09:00	x	(this is marked as processed and will NOT be considered by the program)
+#
+# fredag
+# JOB-0002	SE	Jira	09:00 - 14:00
+# JOB-0003	NO	Prog	14:00 - 16:00		(these two lines will be processed by the program)
+#
+# # # # # # # #

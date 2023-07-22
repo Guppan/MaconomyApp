@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Importer">
+      <UniqueIdentifier>{29c2ada2-d0eb-4e0c-9a77-b4c089ed93c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Importer">
+      <UniqueIdentifier>{12093fe0-2334-4bcd-9ece-a3961c271827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CommandOptions">
+      <UniqueIdentifier>{c51b3455-78df-4ad0-a294-3cf96b28ba59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CommandOptions">
+      <UniqueIdentifier>{3d90c655-930c-41b5-805d-449c12cceb4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Config">
+      <UniqueIdentifier>{88449d28-b457-4f74-893c-4a0a9269da48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Config">
+      <UniqueIdentifier>{230454e8-94fa-4fe3-9571-c6d654555495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit test files">
+      <UniqueIdentifier>{c750f295-b5f7-45bd-afef-593fff54309c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit test files\TextImporter">
+      <UniqueIdentifier>{8a5a61a6-00e7-4ff8-8784-cb3c98f42691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit test files\TextConfig">
+      <UniqueIdentifier>{91b81700-7c4f-4802-b7cb-89ea95a9fccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Caller">
+      <UniqueIdentifier>{5d640d40-bb7e-4a61-a296-867c6d93255a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Caller">
+      <UniqueIdentifier>{b5f983c4-888a-439f-bbee-81b3dec6d66e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Remote">
+      <UniqueIdentifier>{9bcbbe84-3162-4a5e-8216-c86d0110ba6b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CommandOption\CommandOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\ConfigOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\ImporterOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\LoginOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\LogPathOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\Overlord.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\TimePathOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\TransferOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\WriteLogOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandOption\WriteTimeLogOption.cpp">
+      <Filter>Source Files\CommandOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Config\Config.cpp">
+      <Filter>Source Files\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Config\TextConfig.cpp">
+      <Filter>Source Files\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\Entry.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\TextImporter.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Caller\Caller.cpp">
+      <Filter>Source Files\Caller</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Caller\MInfo.cpp">
+      <Filter>Source Files\Caller</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UnitTesting\Catch_TextImporter.cpp">
+      <Filter>Unit test files\TextImporter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UnitTesting\Catch_TextConfig.cpp">
+      <Filter>Unit test files\TextConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\CommandOption\CommandOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\ConfigOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\ImporterOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\LoginOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\LogPathOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\OptionConstants.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\Overlord.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\TimePathOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\TransferOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\WriteLogOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandOption\WriteTimeLogOption.h">
+      <Filter>Header Files\CommandOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Config\Config.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Config\TextConfig.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\Entry.h">
+      <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\Importer.h">
+      <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\TextImporter.h">
+      <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Caller\Caller.h">
+      <Filter>Header Files\Caller</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Caller\CallInfo.h">
+      <Filter>Header Files\Caller</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Caller\MaconomyConstants.h">
+      <Filter>Header Files\Caller</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Caller\MInfo.h">
+      <Filter>Header Files\Caller</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Remote\catch.hpp">
+      <Filter>Header Files\Remote</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Remote\json.hpp">
+      <Filter>Header Files\Remote</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="include\Config\textConfigTemplate.txt">
+      <Filter>Header Files\Config</Filter>
+    </Text>
+    <Text Include="include\Importer\TimeLogTemplate.txt">
+      <Filter>Header Files\Importer</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_config.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog1.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog2.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog3.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog4.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog5.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog6.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog7.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog8.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog9.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextConfig_config1.txt">
+      <Filter>Unit test files\TextConfig</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextConfig_config2.txt">
+      <Filter>Unit test files\TextConfig</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextConfig_config3.txt">
+      <Filter>Unit test files\TextConfig</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextConfig_config4.txt">
+      <Filter>Unit test files\TextConfig</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextConfig_config5.txt">
+      <Filter>Unit test files\TextConfig</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextConfig_config6.txt">
+      <Filter>Unit test files\TextConfig</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

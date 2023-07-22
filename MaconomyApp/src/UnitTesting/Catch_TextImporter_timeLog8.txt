@@ -1,0 +1,11 @@
+mandag
+JOB-0001	SE NO	Task1	08:00 - 09:00
+JOB-0002	SE NO	Task1	09:00 - 10:30
+
+tisdag
+JOB-0001	SE	Task1	08:00 - 09:00
+JOB-0001	NO	Task1	09:00 - 10:00
+
+onsdag
+JOB-0001	SE	Task1	08:00 - 09:00
+JOB-0002	SE NO	Task1	09:00 - 10:30
