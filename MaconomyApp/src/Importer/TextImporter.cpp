@@ -290,7 +290,7 @@ std::vector<const struct TextImporter::TimeLine*> TextImporter::sortedTimeLines(
     std::sort(res.begin(),
               res.end(),
               [](TimeLinePtr lhs, TimeLinePtr rhs) {
-                  return lhs->row < rhs->row;
+                  return lhs->row > rhs->row;
               });
 
     return res;

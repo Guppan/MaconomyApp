@@ -163,6 +163,8 @@ int Caller::performRequest(const struct CallInfo& info) {
 		curl_easy_setopt(_handle, CURLOPT_POSTFIELDS, info.data.c_str());
 	}
 
+	curl_easy_setopt(_handle, CURLOPT_SSL_OPTIONS, CURLSSLOPT_NATIVE_CA);
+
 	std::string responseData;
 	curl_easy_setopt(_handle, CURLOPT_WRITEFUNCTION, writeFunction);
 	curl_easy_setopt(_handle, CURLOPT_WRITEDATA, &responseData);
