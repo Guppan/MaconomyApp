@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -7,7 +8,12 @@
 namespace Maconomy {
 
 	// Represent an entry in the Maconomy time sheet.
-	struct Entry {
+	class Entry {
+	public:
+		// Typedefs.
+		typedef std::unique_ptr<Entry> ptr;
+
+
 		// Daily description.
 		std::string description;
 
@@ -29,20 +35,23 @@ namespace Maconomy {
 
 		// Constructor/Destructor.
 		Entry();
-		~Entry() = default;
+		virtual ~Entry() = default;
 
 
 		// Key.
-		std::string key() const;
+		virtual std::string key() const;
 
 		// Merge another entry with this.
-		void merge(Entry& other);
+		void merge(Entry* other);
 
 		// Can this entry be splitted?
-		bool canSplit() const;
+		virtual bool canSplit() const;
 
 		// Split this entry.
-		Entry split();
+		virtual Entry::ptr split() = 0;
+
+		// Is this a valid entry for transfer?
+		virtual bool isValid() const;
 
 		// Convert to Json.
 		std::string toJson() const;

@@ -1,6 +1,7 @@
 #include "../../include/CommandOption/ImporterOption.h"
 #include "../../include/Config/Config.h"
 #include "../../include/Importer/TextImporter.h"
+#include "../../include/Importer/TogglImporter.h"
 #include "../../include/CommandOption/Overlord.h"
 #include "../../include/CommandOption/OptionConstants.h"
 
@@ -57,6 +58,8 @@ Importer::ptr ImporterOption::importer(Config* config) const {
 	if (config) {
 		if (mode() == TEXT_MODE) {
 			ptr = std::make_unique<TextImporter>(config);
+		} else if (mode() == TOGGL_MODE) {
+			ptr = std::make_unique<TogglImporter>(config);
 		}
 	}
 	return ptr;

@@ -108,6 +108,18 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Importer\TogglImporter.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\TextEntry.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\TogglEntry.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\Importer.cpp">
+      <Filter>Header Files\Importer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CommandOption\CommandOption.h">
@@ -175,6 +187,18 @@
     </ClInclude>
     <ClInclude Include="include\Remote\json.hpp">
       <Filter>Header Files\Remote</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\TogglImporter.h">
+      <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\ImporterConstants.h">
+      <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\TextEntry.h">
+      <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\TogglEntry.h">
+      <Filter>Header Files\Importer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -36,6 +36,8 @@ Caller::~Caller() {
 // Login to Maconomy.
 bool Caller::login(const std::string& username,
 				   const std::string& password) {
+	std::cout << "Logging into Maconomy...\n";
+
 	struct CallInfo cInfo {};
 
 	cInfo.failOnError = false;
@@ -46,6 +48,8 @@ bool Caller::login(const std::string& username,
 	if (!successfulRequest(cInfo, LOGIN_ERROR)) return false;
 	_info.setReconnectToken();
 	curl_easy_reset(_handle);
+
+	std::cout << "Login successful\n";
 	return true;
 }
 
@@ -66,6 +70,7 @@ void Caller::logout() {
 
 // Update tokens.
 bool Caller::updateTokens(const std::string& date) {
+	std::cout << "Updating Maconomy tokens...\n";
 	struct CallInfo cInfo {};
 
 	// Set instance id.
@@ -104,12 +109,19 @@ bool Caller::updateTokens(const std::string& date) {
 	_info.setConcurrencyToken();
 	_info.setRowCount();
 	curl_easy_reset(_handle);
+
+	std::cout << "Updating tokens successful\n";
 	return true;
 }
 
 
 // Add multiple rows in the weekly time sheet.
 void Caller::addRows(std::vector<Entry*> entries) {
+	std::cout << "Starting upload to Maconomy...\n";
+
+	int total = static_cast<int>(entries.size());
+	int transfered{};
+
 	for (auto& entry : entries) {
 		struct CallInfo cInfo {};
 
@@ -119,12 +131,19 @@ void Caller::addRows(std::vector<Entry*> entries) {
 		cInfo.addHeader(_info.contentTypeHeader());
 		cInfo.data = entry->toJson();
 
-		if (performRequest(cInfo) != CURLE_OK) {
-			entry->valid = false;
-		}
+		if (performRequest(cInfo) != CURLE_OK) entry->valid = false;
+		else ++transfered;
+
 		_info.setConcurrencyToken();
 		curl_easy_reset(_handle);
 	}
+
+	// Print result of transfer.
+	std::cout << "-----------------------------------------------\n";
+	std::cout << "Upload to Maconomy completed:\n";
+	std::cout << "Total entries: " << total << '\n';
+	std::cout << "Successful:    " << transfered << '\n';
+	std::cout << "Failed:        " << total - transfered << '\n';
 }
 
 

@@ -1,5 +1,5 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# This is a template for the time log.
+# This is a template for the text time log.
 # Contains information about how the time log should
 # be structured in order for the program to import it
 # successfully.

@@ -4,6 +4,7 @@
 #include "../../include/Config/TextConfig.h"
 #include "../../include/Importer/TextImporter.h"
 
+#include <algorithm>
 #include <fstream>
 
 
@@ -22,8 +23,9 @@ bool ConfigOption::validate() const {
 	// Check if mode is okay.
 	if (_args.size() > mandatory) {
 		const std::string& mode = _args.back();
-
-		// TODO: implement this.
+		
+		auto it = std::find(MODES.cbegin(), MODES.cend(), mode);
+		if (it == MODES.cend()) return false;
 	}
 	return true;
 }
@@ -60,7 +62,7 @@ const std::string& ConfigOption::filePath() const {
 
 // Get the current mode.
 const std::string& ConfigOption::mode() const {
-	if (_args.size() > optional) return _args.back();
+	if (_args.size() > mandatory) return _args.back();
 	return TEXT_MODE;
 }
 
@@ -69,5 +71,6 @@ const std::string& ConfigOption::mode() const {
 Config::ptr ConfigOption::config() const {
 	Config::ptr config = nullptr;
 	if (mode() == TEXT_MODE) config = std::make_unique<TextConfig>();
+	else if (mode() == TOGGL_MODE) config = std::make_unique<TextConfig>();
 	return config;
 }

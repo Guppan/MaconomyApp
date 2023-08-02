@@ -31,6 +31,12 @@ namespace Maconomy {
 	// ----- Modes --------------------------------------------
 
 	const std::string TEXT_MODE = "txt";
+	const std::string TOGGL_MODE = "toggl";
+
+	const std::vector<std::string> MODES = {
+		TEXT_MODE,
+		TOGGL_MODE
+	};
 	
 	// ----- Usage texts --------------------------------------
 

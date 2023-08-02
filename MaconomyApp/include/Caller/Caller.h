@@ -17,7 +17,7 @@ namespace Maconomy {
 
 	// Forward declarations.
 	struct CallInfo;
-	struct Entry;
+	class Entry;
 
 
 	// Responsible for performing calls to the Maconomy API.

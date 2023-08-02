@@ -173,7 +173,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNIT_TEST;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -214,7 +214,11 @@
     <ClCompile Include="src\Config\Config.cpp" />
     <ClCompile Include="src\Config\TextConfig.cpp" />
     <ClCompile Include="src\Importer\Entry.cpp" />
+    <ClCompile Include="src\Importer\Importer.cpp" />
+    <ClCompile Include="src\Importer\TextEntry.cpp" />
     <ClCompile Include="src\Importer\TextImporter.cpp" />
+    <ClCompile Include="src\Importer\TogglEntry.cpp" />
+    <ClCompile Include="src\Importer\TogglImporter.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_TextConfig.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_TextImporter.cpp" />
@@ -239,7 +243,11 @@
     <ClInclude Include="include\Config\TextConfig.h" />
     <ClInclude Include="include\Importer\Entry.h" />
     <ClInclude Include="include\Importer\Importer.h" />
+    <ClInclude Include="include\Importer\ImporterConstants.h" />
+    <ClInclude Include="include\Importer\TextEntry.h" />
     <ClInclude Include="include\Importer\TextImporter.h" />
+    <ClInclude Include="include\Importer\TogglEntry.h" />
+    <ClInclude Include="include\Importer\TogglImporter.h" />
     <ClInclude Include="include\Remote\catch.hpp" />
     <ClInclude Include="include\Remote\json.hpp" />
   </ItemGroup>
