@@ -1,12 +1,12 @@
-#include "../../include/Importer/TogglEntry.h"
+#include "../../include/Importer/PreciseEntry.h"
 
 
 using namespace Maconomy;
 
 
 // Split this entry.
-Entry::ptr TogglEntry::split() {
-	std::unique_ptr<TogglEntry> other = std::make_unique<TogglEntry>();
+Entry::ptr PreciseEntry::split() {
+	std::unique_ptr<PreciseEntry> other = std::make_unique<PreciseEntry>();
 	other->description = description;
 	other->taskName = taskName;
 	other->spec3 = spec3;

@@ -1,4 +1,5 @@
 #include "../../include/Importer/TogglImporter.h"
+#include "../../include/Importer/PreciseEntry.h"
 #include "../../include/Config/Config.h"
 #include "../../include/Importer/ImporterConstants.h"
 #include "../../include/Remote/json.hpp"
@@ -8,40 +9,55 @@
 #include <iostream>
 #include <sstream>
 
+#ifndef _MSC_VER
+#include <mutex>
+#endif // _MSC_CER
+
 
 using namespace Maconomy;
 using json = nlohmann::json;
 
 
-// Get the weekday number from a date.
-int weekday(const std::string& date) {
-	std::tm tm{};
+namespace {
+	
+	// Compiler dependent implementation of localtime.
+	std::tm localtime_safe(std::time_t time) {
+		std::tm tm{};
 
-	std::istringstream ss(date);
-	std::string tmp;
-	for (int i{}; std::getline(ss, tmp, '-'); ++i) {
-		switch (i) {
-			case 0: { tm.tm_year = std::stoi(tmp) - 1900; break; }
-			case 1: { tm.tm_mday = std::stoi(tmp) - 1; break; }
-			case 2: { tm.tm_mday = std::stoi(tmp); break; }
-			default: {
-				std::cerr << "weekday(..) - Ill formed date string" << std::endl;
-				return -1;
-			}
-		}
+		#ifdef _MSC_VER
+		localtime_s(&tm, &time);
+		#else
+		// Thread safe localtime using lock.
+		static std::mutex mtx;
+		std::lock_guard<std::mutex> lock(mtx);
+		tm = *std::localtime(&time);
+		#endif // _MSC_VER
+
+		return tm;
 	}
 
-	return tm.tm_wday;
-}
+	// Get the weekday number from a date.
+	int weekday(const std::string& date) {
+		std::tm tm{};
+		std::istringstream ss(date);
+		std::string tmp;
+		for (int i{}; std::getline(ss, tmp, '-'); ++i) {
+			switch (i) {
+				case 0: { tm.tm_year = std::stoi(tmp) - 1900; break; }
+				case 1: { tm.tm_mday = std::stoi(tmp) - 1; break; }
+				case 2: { tm.tm_mday = std::stoi(tmp); break; }
+				default: {
+					std::cerr << "weekday(..) - Ill formed date string" << std::endl;
+					return -1;
+				}
+			}
+		}
 
+		std::time_t time = std::mktime(&tm);
+		std::tm res = localtime_safe(time);
+		return res.tm_wday;
+	}
 
-// Converts a time (hh:mm:ss) to hours.
-double toHours(const std::string& time) {
-	const double hours = std::stod(time.substr(0, 2));
-	const double minutes = std::stod(time.substr(3, 2));
-	const double seconds = std::stod(time.substr(4));
-
-	return hours + minutes / 60.0 + seconds / 3600.0;
 }
 
 
@@ -54,16 +70,25 @@ void TogglImporter::import() {
 		return;
 	}
 
+	_entries.clear();
+
 	json parsed = json::parse(file);
 	for (auto& elem : parsed[TOGGL_JSON_ARRAY]) {
-		TogglEntry::ptr entry = std::make_unique<TogglEntry>();
-		
+		PreciseEntry::ptr entry = std::make_unique<PreciseEntry>();
+
 		entry->description = elem[TOGGL_JSON_DESCRIPTION];
-		entry->jobNumber.push_back(elem[TOGGL_JSON_PROJECT]);
 		entry->taskName = elem[TOGGL_JSON_CLIENT];
-		
+
+		std::istringstream ss;
+		ss.str(elem[TOGGL_JSON_PROJECT]);
+		std::string job;
+		while (std::getline(ss, job, TOGGL_JOB_DELIMITER)) {
+			entry->jobNumber.push_back(job);
+		}
+
 		for (auto& tag : elem[TOGGL_JSON_TAG]) {
-			entry->jobNumber.push_back(tag);
+			entry->spec3 = tag;
+			break;
 		}
 
 		const int day = weekday(elem[TOGGL_JSON_DATE]);

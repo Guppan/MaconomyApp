@@ -54,6 +54,9 @@ namespace Maconomy {
 
 		// Set Maconomy job and task.
 		void setJobAndTask();
+
+		// Convert a time string to hours.
+		virtual double toHours(const std::string& time) const;
 	};
 
 }

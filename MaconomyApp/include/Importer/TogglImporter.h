@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Importer.h"
-#include "TogglEntry.h"
-
-#include <unordered_map>
 
 
 namespace Maconomy {

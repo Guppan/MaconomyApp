@@ -26,6 +26,10 @@ namespace Maconomy {
 		// Write to log file.
 		void writeToLog() const override;
 
+	protected:
+		// Convert a time string to hours.
+		double toHours(const std::string& time) const override;
+
 	private:
 		// Sort time lines and return as vector.
 		std::vector<const TextEntry*> sortedTimeLines() const;

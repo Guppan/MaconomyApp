@@ -12,69 +12,48 @@
 using namespace Maconomy;
 
 
-// Convert a time string (hhmm) to hours.
-double toDoubleHours(const std::string& time) {
-    const double hours = std::stod(time.substr(0, 2));
-    const double minutes = std::stod(time.substr(2));
+namespace {
 
-    return hours + minutes / 60.0;
-}
-
-
-// Is valid time interval?
-bool isTimeInterval(const std::string& arg) {
-    int count{};
-    for (char c : arg) if (isdigit(c)) ++count;
-    return (count == 8);
-}
-
-
-// Calculate a time interval.
-double calculateTimeInterval(const std::string& arg) {
-    std::string tmp;
-    for (char c : arg) if (isdigit(c)) tmp += c;
-
-    // Sanitiy check.
-    if (tmp.size() != 8) return -1;
-
-    const double a = toDoubleHours(tmp.substr(0, 4));
-    const double b = toDoubleHours(tmp.substr(4));
-
-    return b - a;
-}
-
-
-// Convert day to day number.
-int dayToNumber(const std::string& day) {
-    static const std::string weekdays[] = {
-        "mandag", "tisdag", "onsdag", "torsdag", "fredag"
-    };
-
-    std::string lowerDay;
-    for (const char c : day) lowerDay += std::tolower(c);
-
-    for (int i{}; i < 5; ++i) {
-        if (weekdays[i] == lowerDay) return i;
+    // Is valid time interval?
+    bool isTimeInterval(const std::string& arg) {
+        int count{};
+        for (char c : arg) if (isdigit(c)) ++count;
+        return (count == 8);
     }
-    return -1;
-}
 
 
-// Represent a processed line?
-bool isProcessed(const std::string& arg) {
-    return (arg == "x" || arg == "X");
-}
+    // Convert day to day number.
+    int dayToNumber(const std::string& day) {
+        static const std::string weekdays[] = {
+            "mandag", "tisdag", "onsdag", "torsdag", "fredag"
+        };
 
+        std::string lowerDay;
+        for (const char c : day) lowerDay += std::tolower(c);
 
-// Is a Spec3 argument?
-bool isSpec3(const std::string& arg) {
-    if (arg.empty() || isProcessed(arg)) return false;
-    for (const char c : arg) {
-        if (!isalpha(c)) return false;
+        for (int i{}; i < 5; ++i) {
+            if (weekdays[i] == lowerDay) return i;
+        }
+        return -1;
     }
-    return true;
-}
 
+
+    // Represent a processed line?
+    bool isProcessed(const std::string& arg) {
+        return (arg == "x" || arg == "X");
+    }
+
+
+    // Is a Spec3 argument?
+    bool isSpec3(const std::string& arg) {
+        if (arg.empty() || isProcessed(arg)) return false;
+        for (const char c : arg) {
+            if (!isalpha(c)) return false;
+        }
+        return true;
+    }
+
+}
 
 // Import time log.
 void TextImporter::import() {
@@ -130,7 +109,7 @@ void TextImporter::import() {
             }
 
             if (isTimeInterval(arg) && weekday != -1) {
-                entry->times[weekday] += calculateTimeInterval(arg);
+                entry->times[weekday] += toHours(arg);
             } else if (isSpec3(arg)) {
                 entry->spec3 = arg;
             } else if (isProcessed(arg)) {
@@ -164,6 +143,21 @@ void TextImporter::writeToTimeLog() const {
 // Write to log file.
 void TextImporter::writeToLog() const {
     writeToFile(_config->logPath, false);
+}
+
+
+// Convert a time string (hh:mm - hh:mm) to hours.
+double TextImporter::toHours(const std::string& time) const {
+    std::string tmp;
+    for (char c : time) if (isdigit(c) || c == ':') tmp += c;
+
+    // Sanitiy check.
+    if (tmp.size() != 10) return -1;
+
+    const double a = Importer::toHours(tmp.substr(0, 5));
+    const double b = Importer::toHours(tmp.substr(5));
+
+    return b - a;
 }
 
 

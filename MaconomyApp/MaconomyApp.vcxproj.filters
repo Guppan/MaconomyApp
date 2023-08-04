@@ -49,6 +49,15 @@
     <Filter Include="Header Files\Remote">
       <UniqueIdentifier>{9bcbbe84-3162-4a5e-8216-c86d0110ba6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Unit test files\OptimizeImporter">
+      <UniqueIdentifier>{6e0d8090-96d7-4a70-9359-b213bae13ff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit test files\TogglImporter">
+      <UniqueIdentifier>{279bf092-3376-4792-adb5-d48080c0f5ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UnitTesting">
+      <UniqueIdentifier>{d1b9d9f2-60a5-4626-8e9f-15c0f49e8e2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CommandOption\CommandOption.cpp">
@@ -114,11 +123,23 @@
     <ClCompile Include="src\Importer\TextEntry.cpp">
       <Filter>Source Files\Importer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Importer\TogglEntry.cpp">
-      <Filter>Source Files\Importer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Importer\Importer.cpp">
       <Filter>Header Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\OptimizeImporter.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UnitTesting\Catch_TogglImporter.cpp">
+      <Filter>Unit test files\TogglImporter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UnitTesting\Catch_OptimizeImporter.cpp">
+      <Filter>Unit test files\OptimizeImporter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\PreciseEntry.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UnitTesting\Catch_UnitTesting.cpp">
+      <Filter>Unit test files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,8 +218,14 @@
     <ClInclude Include="include\Importer\TextEntry.h">
       <Filter>Header Files\Importer</Filter>
     </ClInclude>
-    <ClInclude Include="include\Importer\TogglEntry.h">
+    <ClInclude Include="include\Importer\OptimizeImporter.h">
       <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\PreciseEntry.h">
+      <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UnitTesting\Catch_UnitTesting.h">
+      <Filter>Header Files\UnitTesting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -256,5 +283,19 @@
     <Text Include="src\UnitTesting\Catch_TextConfig_config6.txt">
       <Filter>Unit test files\TextConfig</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\UnitTesting\Catch_OptimizeImporter_timeLog1.html">
+      <Filter>Unit test files\OptimizeImporter</Filter>
+    </None>
+    <None Include="src\UnitTesting\Catch_OptimizeImporter_timeLog2.html">
+      <Filter>Unit test files\OptimizeImporter</Filter>
+    </None>
+    <None Include="src\UnitTesting\Catch_TogglImporter_timeLog1.json">
+      <Filter>Unit test files\TogglImporter</Filter>
+    </None>
+    <None Include="src\UnitTesting\Catch_TogglImporter_timeLog2.json">
+      <Filter>Unit test files\TogglImporter</Filter>
+    </None>
   </ItemGroup>
 </Project>

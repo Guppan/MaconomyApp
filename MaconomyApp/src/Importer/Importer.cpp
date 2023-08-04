@@ -77,8 +77,9 @@ void Importer::setJobAndTask() {
 		}
 
 		Entry* current = it->second.get();
+	//	std::cout << "current->valid() : " << current->isValid() << std::endl;
 		if (!current->isValid()) continue;
-
+//		std::cout << "current.jobs size: " << current->jobNumber.size() << std::endl;
 		const std::string jobTaskKey{
 			current->jobNumber.back() + ";" + current->taskName };
 
@@ -107,4 +108,29 @@ void Importer::setJobAndTask() {
 			insertEntry(std::move(entry));
 		}
 	}
+}
+
+
+// Convert a time string (hh:mm:ss) to hours.
+double Importer::toHours(const std::string& time) const {
+	static const std::vector<double> divs{ 1.0, 60.0, 3600.0 };
+
+	double res{};
+	const std::size_t size = time.size();
+	std::string tmp{};
+
+	for (std::size_t i{}, divsIdx{}; (i < size && divsIdx < divs.size()); ++i) {
+		const bool end{ i == size - 1 };
+		const char c = time[i];
+
+		if (!isdigit(c) || end) {
+			if (isdigit(c) && end) tmp.push_back(c);
+			res += std::stod(tmp) / divs[divsIdx++];
+			tmp.clear();
+			continue;
+		}
+		tmp.push_back(c);
+	}
+
+	return res;
 }

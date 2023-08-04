@@ -215,13 +215,17 @@
     <ClCompile Include="src\Config\TextConfig.cpp" />
     <ClCompile Include="src\Importer\Entry.cpp" />
     <ClCompile Include="src\Importer\Importer.cpp" />
+    <ClCompile Include="src\Importer\OptimizeImporter.cpp" />
     <ClCompile Include="src\Importer\TextEntry.cpp" />
     <ClCompile Include="src\Importer\TextImporter.cpp" />
-    <ClCompile Include="src\Importer\TogglEntry.cpp" />
+    <ClCompile Include="src\Importer\PreciseEntry.cpp" />
     <ClCompile Include="src\Importer\TogglImporter.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\UnitTesting\Catch_OptimizeImporter.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_TextConfig.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_TextImporter.cpp" />
+    <ClCompile Include="src\UnitTesting\Catch_TogglImporter.cpp" />
+    <ClCompile Include="src\UnitTesting\Catch_UnitTesting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Caller\Caller.h" />
@@ -244,12 +248,14 @@
     <ClInclude Include="include\Importer\Entry.h" />
     <ClInclude Include="include\Importer\Importer.h" />
     <ClInclude Include="include\Importer\ImporterConstants.h" />
+    <ClInclude Include="include\Importer\OptimizeImporter.h" />
     <ClInclude Include="include\Importer\TextEntry.h" />
     <ClInclude Include="include\Importer\TextImporter.h" />
-    <ClInclude Include="include\Importer\TogglEntry.h" />
+    <ClInclude Include="include\Importer\PreciseEntry.h" />
     <ClInclude Include="include\Importer\TogglImporter.h" />
     <ClInclude Include="include\Remote\catch.hpp" />
     <ClInclude Include="include\Remote\json.hpp" />
+    <ClInclude Include="include\UnitTesting\Catch_UnitTesting.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="include\Config\textConfigTemplate.txt" />
@@ -334,6 +340,24 @@
       </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\UnitTesting\Catch_OptimizeImporter_timeLog1.html">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
+    </None>
+    <None Include="src\UnitTesting\Catch_OptimizeImporter_timeLog2.html">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
+    </None>
+    <None Include="src\UnitTesting\Catch_TogglImporter_timeLog1.json">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
+    </None>
+    <None Include="src\UnitTesting\Catch_TogglImporter_timeLog2.json">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
