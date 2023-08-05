@@ -14,7 +14,6 @@ namespace Maconomy {
 	const std::string TRANSFER_KEY = "-s";
 	const std::string TIMEPATH_KEY = "-t";
 	const std::string LOGPATH_KEY = "-l";
-	const std::string WRITETIMELOG_KEY = "-wtl";
 	const std::string WRITELOG_KEY = "-wt";
 
 	const std::vector<std::string> OPTION_KEYS = {
@@ -24,7 +23,6 @@ namespace Maconomy {
 		TRANSFER_KEY,
 		TIMEPATH_KEY,
 		LOGPATH_KEY,
-		WRITETIMELOG_KEY,
 		WRITELOG_KEY
 	};
 
@@ -32,10 +30,12 @@ namespace Maconomy {
 
 	const std::string TEXT_MODE = "txt";
 	const std::string TOGGL_MODE = "toggl";
+	const std::string OPTIMIZE_MODE = "optimize";
 
 	const std::vector<std::string> MODES = {
 		TEXT_MODE,
-		TOGGL_MODE
+		TOGGL_MODE,
+		OPTIMIZE_MODE
 	};
 	
 	// ----- Usage texts --------------------------------------

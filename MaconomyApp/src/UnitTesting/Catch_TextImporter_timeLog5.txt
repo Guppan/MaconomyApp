@@ -1,3 +1,15 @@
 mandag
 JOB-0001	SE	Task1	08:00 - 09:00
 JOB-0002	SE	Task1	09:00 - 10:00
+
+tisdag
+JOB-0002	SE	Task1	09:00 - 10:00
+
+onsdag
+JOB-0001	SE	Task1	08:00 - 09:00
+
+torsdag
+JOB-0002	SE	Task1	09:30 - 11:30
+
+fredag
+JOB-0001	SE	Task1	08:00 - 09:00

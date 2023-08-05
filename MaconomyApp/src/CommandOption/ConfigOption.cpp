@@ -69,8 +69,6 @@ const std::string& ConfigOption::mode() const {
 
 // Get the config to use.
 Config::ptr ConfigOption::config() const {
-	Config::ptr config = nullptr;
-	if (mode() == TEXT_MODE) config = std::make_unique<TextConfig>();
-	else if (mode() == TOGGL_MODE) config = std::make_unique<TextConfig>();
-	return config;
+	// Currently all modes uses TextConfig.
+	return std::make_unique<TextConfig>();
 }

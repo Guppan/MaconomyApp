@@ -2,6 +2,7 @@
 #include "../../include/Config/Config.h"
 #include "../../include/Importer/TextImporter.h"
 #include "../../include/Importer/TogglImporter.h"
+#include "../../include/Importer/OptimizeImporter.h"
 #include "../../include/CommandOption/Overlord.h"
 #include "../../include/CommandOption/OptionConstants.h"
 
@@ -19,10 +20,6 @@ bool ImporterOption::validate() const {
 // Spawn other options this option might depend on.
 CommandOption::vector ImporterOption::optionSpawner() const {
 	CommandOption::vector vec;
-
-	// Spawn time log writer option.
-	OptionParam param1{ WRITETIMELOG_KEY, { }, true };
-	vec.emplace_back(optionFactory(param1));
 
 	// Spawn log writer option.
 	OptionParam param2{ WRITELOG_KEY, { }, true };
@@ -60,6 +57,8 @@ Importer::ptr ImporterOption::importer(Config* config) const {
 			ptr = std::make_unique<TextImporter>(config);
 		} else if (mode() == TOGGL_MODE) {
 			ptr = std::make_unique<TogglImporter>(config);
+		} else if (mode() == OPTIMIZE_MODE) {
+			ptr = std::make_unique<OptimizeImporter>(config);
 		}
 	}
 	return ptr;

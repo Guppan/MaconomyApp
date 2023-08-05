@@ -51,17 +51,8 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 		testEntries(res, set, 1);
 	}
 
-	SECTION("Importing multiple same job entries with processed") {
-		config->timeLogPath = path + "timeLog4.txt";
-		std::vector<Entry*> res = importGetEntries(importer.get());
-
-		set.emplace(json("JOB-0001", "J1", "T1", { 1.0, 1.0, 1.0, 1.0, 1.0 }));
-
-		testEntries(res, set, 1);
-	}
-
 	SECTION("Importing two jobs simple") {
-		config->timeLogPath = path + "timeLog5.txt";
+		config->timeLogPath = path + "timeLog4.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
 
 		set.emplace(json("JOB-0001", "J1", "T1", { 1.0, 0, 0, 0, 0 }));
@@ -71,7 +62,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 	}
 
 	SECTION("Importing two jobs simple week") {
-		config->timeLogPath = path + "timeLog6.txt";
+		config->timeLogPath = path + "timeLog5.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
 
 		set.emplace(json("JOB-0001", "J1", "T1", { 1.0, 0, 1.0, 0, 1.0 }));
@@ -81,7 +72,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 	}
 
 	SECTION("Importing split job simple") {
-		config->timeLogPath = path + "timeLog7.txt";
+		config->timeLogPath = path + "timeLog6.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
 
 		set.emplace(json("JOB-0001", "J1", "T1", { 0.5, 0, 0, 0, 0 }));
@@ -91,7 +82,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 	}
 
 	SECTION("Importing split job complex") {
-		config->timeLogPath = path + "timeLog8.txt";
+		config->timeLogPath = path + "timeLog7.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
 
 		set.emplace(json("JOB-0001", "J1", "T1", { 0.5, 1.0, 1.0, 0, 0 }));
@@ -103,7 +94,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 	}
 
 	SECTION("Importing full time log complex") {
-		config->timeLogPath = path + "timeLog9.txt";
+		config->timeLogPath = path + "timeLog8.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
 		
 		set.emplace(json("JOB-0001", "J1", "T2", { 2.0, 0.5, 1.0, 0, 0 }));

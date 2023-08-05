@@ -210,15 +210,13 @@
     <ClCompile Include="src\CommandOption\TimePathOption.cpp" />
     <ClCompile Include="src\CommandOption\TransferOption.cpp" />
     <ClCompile Include="src\CommandOption\WriteLogOption.cpp" />
-    <ClCompile Include="src\CommandOption\WriteTimeLogOption.cpp" />
     <ClCompile Include="src\Config\Config.cpp" />
     <ClCompile Include="src\Config\TextConfig.cpp" />
     <ClCompile Include="src\Importer\Entry.cpp" />
     <ClCompile Include="src\Importer\Importer.cpp" />
     <ClCompile Include="src\Importer\OptimizeImporter.cpp" />
-    <ClCompile Include="src\Importer\TextEntry.cpp" />
+    <ClCompile Include="src\Importer\SplitFunctions.cpp" />
     <ClCompile Include="src\Importer\TextImporter.cpp" />
-    <ClCompile Include="src\Importer\PreciseEntry.cpp" />
     <ClCompile Include="src\Importer\TogglImporter.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_OptimizeImporter.cpp" />
@@ -242,16 +240,14 @@
     <ClInclude Include="include\CommandOption\TimePathOption.h" />
     <ClInclude Include="include\CommandOption\TransferOption.h" />
     <ClInclude Include="include\CommandOption\WriteLogOption.h" />
-    <ClInclude Include="include\CommandOption\WriteTimeLogOption.h" />
     <ClInclude Include="include\Config\Config.h" />
     <ClInclude Include="include\Config\TextConfig.h" />
     <ClInclude Include="include\Importer\Entry.h" />
     <ClInclude Include="include\Importer\Importer.h" />
     <ClInclude Include="include\Importer\ImporterConstants.h" />
     <ClInclude Include="include\Importer\OptimizeImporter.h" />
-    <ClInclude Include="include\Importer\TextEntry.h" />
+    <ClInclude Include="include\Importer\SplitFunctions.h" />
     <ClInclude Include="include\Importer\TextImporter.h" />
-    <ClInclude Include="include\Importer\PreciseEntry.h" />
     <ClInclude Include="include\Importer\TogglImporter.h" />
     <ClInclude Include="include\Remote\catch.hpp" />
     <ClInclude Include="include\Remote\json.hpp" />
@@ -311,34 +307,24 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
     </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog4.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
     </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog5.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
     </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog6.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
     </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog7.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
     </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog8.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog9.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
     </Text>
   </ItemGroup>
   <ItemGroup>

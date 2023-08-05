@@ -39,13 +39,19 @@ namespace Maconomy {
 		// Get Maconomy entries.
 		std::vector<Entry*> getEntries();
 
-		// Write to time log.
-		virtual void writeToTimeLog() const { }
-
 		// Write to log file.
-		virtual void writeToLog() const { }
+		void writeToLog() const;
 
 	protected:
+		// Split function for this importer.
+		virtual Entry::SplitFn splitFunction() const = 0;
+
+		// Convert a time string to hours.
+		virtual double toHours(const std::string& time) const;
+
+		// Get a new entry instance.
+		Entry::ptr createEntry();
+
 		// Insert an entry into the entries map.
 		void insertEntry(Entry::ptr entry);
 
@@ -54,9 +60,6 @@ namespace Maconomy {
 
 		// Set Maconomy job and task.
 		void setJobAndTask();
-
-		// Convert a time string to hours.
-		virtual double toHours(const std::string& time) const;
 	};
 
 }

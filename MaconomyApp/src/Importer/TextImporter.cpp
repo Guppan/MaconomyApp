@@ -1,6 +1,6 @@
 #include "../../include/Importer/TextImporter.h"
 #include "../../include/Config/Config.h"
-#include "../../include/Importer/TextEntry.h"
+#include "../../include/Importer/SplitFunctions.h"
 
 #include <algorithm>
 #include <fstream>
@@ -38,15 +38,9 @@ namespace {
     }
 
 
-    // Represent a processed line?
-    bool isProcessed(const std::string& arg) {
-        return (arg == "x" || arg == "X");
-    }
-
-
     // Is a Spec3 argument?
     bool isSpec3(const std::string& arg) {
-        if (arg.empty() || isProcessed(arg)) return false;
+        if (arg.empty()) return false;
         for (const char c : arg) {
             if (!isalpha(c)) return false;
         }
@@ -54,6 +48,7 @@ namespace {
     }
 
 }
+
 
 // Import time log.
 void TextImporter::import() {
@@ -69,24 +64,22 @@ void TextImporter::import() {
     int weekday{ -1 };
     std::string line;
     for (int row{}; std::getline(file, line); ++row) {
-        TextEntry::ptr entry = std::make_unique<TextEntry>();
+        if (line.empty()) continue;
 
-        if (line.empty()) {
-            entry->row = row;
-            entry->processed = true;
-        }
+        Entry::ptr entry;
 
         std::istringstream ss(line);
         std::string arg;
         for (int column{}; std::getline(ss, arg, '\t'); ++column) {
-            entry->raw.push_back(arg);
 
             const int day = dayToNumber(arg);
             if (day != -1) {
                 weekday = day;
-                entry->processed = true;
                 break;
             }
+
+            if (!entry) entry = createEntry();
+            entry->raw.push_back(arg);
 
             switch (column) {
                 case 0: { // Description.
@@ -112,12 +105,12 @@ void TextImporter::import() {
                 entry->times[weekday] += toHours(arg);
             } else if (isSpec3(arg)) {
                 entry->spec3 = arg;
-            } else if (isProcessed(arg)) {
-                entry->processed = true;
             } else {
                 entry->valid = false;
             }
         }
+
+        if (!entry) continue;
 
         // Set default Spec3 if none was set.
         if (entry->spec3.empty()) {
@@ -134,15 +127,9 @@ void TextImporter::import() {
 }
 
 
-// Write updated data to time log.
-void TextImporter::writeToTimeLog() const {
-    writeToFile(_config->timeLogPath, true);
-}
-
-
-// Write to log file.
-void TextImporter::writeToLog() const {
-    writeToFile(_config->logPath, false);
+// Split function for this importer.
+Entry::SplitFn TextImporter::splitFunction() const {
+    return &discreteSplitFn;
 }
 
 
@@ -158,50 +145,4 @@ double TextImporter::toHours(const std::string& time) const {
     const double b = Importer::toHours(tmp.substr(5));
 
     return b - a;
-}
-
-
-// Sort time lines and return as vector.
-std::vector<const TextEntry*> TextImporter::sortedTimeLines() const {
-    std::vector<const TextEntry*> res{};
-    for (auto it = _entries.cbegin(); it != _entries.cend(); ++it) {
-        res.push_back(dynamic_cast<TextEntry*>(it->second.get()));
-    }
-
-    std::sort(res.begin(),
-              res.end(),
-              [](const TextEntry* lhs, const TextEntry* rhs) {
-                  return lhs->row > rhs->row;
-              });
-
-    return res;
-}
-
-
-// Write to file.
-void TextImporter::writeToFile(const std::string& path,
-                               bool toTimeLog) const {
-    std::ofstream out;
-    out.open(path, std::ios::trunc);
-    if (!out) {
-        std::cerr << "Unable to open file with path: " << path << std::endl;
-        return;
-    }
-    
-    for (const TextEntry* entry : sortedTimeLines()) {
-        if (!toTimeLog && entry->raw.empty()) continue;
-        if (!toTimeLog && (entry->processed || entry->valid)) continue;
-
-        const size_t count = entry->raw.size();
-        for (size_t i{}; i < count; ++i) {
-            out << entry->raw[i];
-            if (i != (count - 1)) out << '\t';
-            else if (toTimeLog &&
-                     !entry->processed &&
-                     entry->valid) out << '\t' << 'x';
-        }
-        out << '\n';
-    }
-
-    out.close();
 }

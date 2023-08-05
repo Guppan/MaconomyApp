@@ -87,9 +87,6 @@
     <ClCompile Include="src\CommandOption\WriteLogOption.cpp">
       <Filter>Source Files\CommandOptions</Filter>
     </ClCompile>
-    <ClCompile Include="src\CommandOption\WriteTimeLogOption.cpp">
-      <Filter>Source Files\CommandOptions</Filter>
-    </ClCompile>
     <ClCompile Include="src\Config\Config.cpp">
       <Filter>Source Files\Config</Filter>
     </ClCompile>
@@ -120,12 +117,6 @@
     <ClCompile Include="src\Importer\TogglImporter.cpp">
       <Filter>Source Files\Importer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Importer\TextEntry.cpp">
-      <Filter>Source Files\Importer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Importer\Importer.cpp">
-      <Filter>Header Files\Importer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Importer\OptimizeImporter.cpp">
       <Filter>Source Files\Importer</Filter>
     </ClCompile>
@@ -135,11 +126,14 @@
     <ClCompile Include="src\UnitTesting\Catch_OptimizeImporter.cpp">
       <Filter>Unit test files\OptimizeImporter</Filter>
     </ClCompile>
-    <ClCompile Include="src\Importer\PreciseEntry.cpp">
-      <Filter>Source Files\Importer</Filter>
-    </ClCompile>
     <ClCompile Include="src\UnitTesting\Catch_UnitTesting.cpp">
       <Filter>Unit test files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\SplitFunctions.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Importer\Importer.cpp">
+      <Filter>Source Files\Importer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,9 +165,6 @@
       <Filter>Header Files\CommandOptions</Filter>
     </ClInclude>
     <ClInclude Include="include\CommandOption\WriteLogOption.h">
-      <Filter>Header Files\CommandOptions</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CommandOption\WriteTimeLogOption.h">
       <Filter>Header Files\CommandOptions</Filter>
     </ClInclude>
     <ClInclude Include="include\Config\Config.h">
@@ -215,17 +206,14 @@
     <ClInclude Include="include\Importer\ImporterConstants.h">
       <Filter>Header Files\Importer</Filter>
     </ClInclude>
-    <ClInclude Include="include\Importer\TextEntry.h">
-      <Filter>Header Files\Importer</Filter>
-    </ClInclude>
     <ClInclude Include="include\Importer\OptimizeImporter.h">
-      <Filter>Header Files\Importer</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Importer\PreciseEntry.h">
       <Filter>Header Files\Importer</Filter>
     </ClInclude>
     <ClInclude Include="include\UnitTesting\Catch_UnitTesting.h">
       <Filter>Header Files\UnitTesting</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Importer\SplitFunctions.h">
+      <Filter>Header Files\Importer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -247,24 +235,6 @@
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog3.txt">
       <Filter>Unit test files\TextImporter</Filter>
     </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog4.txt">
-      <Filter>Unit test files\TextImporter</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog5.txt">
-      <Filter>Unit test files\TextImporter</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog6.txt">
-      <Filter>Unit test files\TextImporter</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog7.txt">
-      <Filter>Unit test files\TextImporter</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog8.txt">
-      <Filter>Unit test files\TextImporter</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog9.txt">
-      <Filter>Unit test files\TextImporter</Filter>
-    </Text>
     <Text Include="src\UnitTesting\Catch_TextConfig_config1.txt">
       <Filter>Unit test files\TextConfig</Filter>
     </Text>
@@ -282,6 +252,21 @@
     </Text>
     <Text Include="src\UnitTesting\Catch_TextConfig_config6.txt">
       <Filter>Unit test files\TextConfig</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog4.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog5.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog6.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog7.txt">
+      <Filter>Unit test files\TextImporter</Filter>
+    </Text>
+    <Text Include="src\UnitTesting\Catch_TextImporter_timeLog8.txt">
+      <Filter>Unit test files\TextImporter</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

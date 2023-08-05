@@ -1,6 +1,6 @@
 #include "../../include/Importer/OptimizeImporter.h"
-#include "../../include/Importer/PreciseEntry.h"
 #include "../../include/Config/Config.h"
+#include "../../include/Importer/SplitFunctions.h"
 #include "../../include/Importer/ImporterConstants.h"
 
 #include <fstream>
@@ -69,14 +69,14 @@ void OptimizeImporter::import() {
 		file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 
-	PreciseEntry::ptr entry;
+	Entry::ptr entry;
 	std::string line;
 	while (std::getline(file, line)) {
 		if (isEmptyString(line)) continue;
 		if (isTotalLine(line)) break;
 
 		if (isTaskLine(line)) {
-			entry = std::make_unique<PreciseEntry>();
+			entry = createEntry();
 			
 			if (!setData(line, entry.get())) { entry->valid = false; continue; }
 			if (!setTimes(file, entry.get())) { entry->valid = false; continue; }
@@ -90,6 +90,12 @@ void OptimizeImporter::import() {
 
 	splitEntries();
 	setJobAndTask();
+}
+
+
+// Split function for this importer.
+Entry::SplitFn OptimizeImporter::splitFunction() const {
+	return &simpleSplitFn;
 }
 
 

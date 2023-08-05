@@ -16,6 +16,9 @@ namespace Maconomy {
 		void import() override;
 
 	protected:
+		// Split function for this importer.
+		Entry::SplitFn splitFunction() const;
+
 		// Convert a time string to hours.
 		double toHours(const std::string& time) const override;
 

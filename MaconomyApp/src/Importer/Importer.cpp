@@ -2,7 +2,9 @@
 #include "../../include/Importer/Entry.h"
 #include "../../include/Config/Config.h"
 
+#include <fstream>
 #include <iostream>
+#include <sstream>
 
 
 using namespace Maconomy;
@@ -19,6 +21,42 @@ std::vector<Entry*> Importer::getEntries() {
 	}
 
 	return res;
+}
+
+
+// Write to log file.
+void Importer::writeToLog() const {
+	std::ofstream out;
+	out.open(_config->logPath, std::ios::trunc);
+	if (!out) {
+		std::cerr << "writeToLog() - Unable to open log file with path: " << _config->logPath << std::endl;
+		return;
+	}
+
+	// Get invalid entries.
+	std::vector<const Entry*> invalids{};
+	for (auto it = _entries.cbegin(); it != _entries.cend(); ++it) {
+		if (!it->second->isValid()) {
+			invalids.push_back(it->second.get());
+		}
+	}
+
+	// Output invalids to file.
+	out << "----- Failed to upload following entries. Please add them manually to Maconomy -----\n\n";
+	for (const Entry* entry : invalids) {
+		out << "Description: " << entry->description << '\n';
+		out << "Job name(s): ";
+		for (const auto& job : entry->jobNumber) out << job << ' ';
+		out << "\nTask name:   " << entry->taskName << '\n\n';
+	}
+
+	out.close();
+}
+
+
+// Get a new entry instance.
+Entry::ptr Importer::createEntry() {
+	return entryBuilder(splitFunction());
 }
 
 
@@ -77,9 +115,8 @@ void Importer::setJobAndTask() {
 		}
 
 		Entry* current = it->second.get();
-	//	std::cout << "current->valid() : " << current->isValid() << std::endl;
 		if (!current->isValid()) continue;
-//		std::cout << "current.jobs size: " << current->jobNumber.size() << std::endl;
+
 		const std::string jobTaskKey{
 			current->jobNumber.back() + ";" + current->taskName };
 

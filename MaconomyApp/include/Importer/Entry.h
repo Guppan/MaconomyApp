@@ -12,8 +12,16 @@ namespace Maconomy {
 	public:
 		// Typedefs.
 		typedef std::unique_ptr<Entry> ptr;
+		typedef Entry::ptr(*SplitFn)(Entry*);
 
+		// Friends.
+		friend Entry::ptr entryBuilder(Entry::SplitFn splitFn);
 
+	protected:
+		// Split function.
+		SplitFn _splitFn;
+
+	public:
 		// Daily description.
 		std::string description;
 
@@ -32,31 +40,37 @@ namespace Maconomy {
 		// Is this entry valid?
 		bool valid;
 
+		// Raw input.
+		std::vector<std::string> raw;
 
-		// Constructor/Destructor.
+	protected:
+		// Protected constructor.
 		Entry();
+
+	public:
 		virtual ~Entry() = default;
 
 
 		// Key.
-		virtual std::string key() const;
+		std::string key() const;
 
 		// Merge another entry with this.
 		void merge(Entry* other);
 
 		// Can this entry be splitted?
-		virtual bool canSplit() const;
+		bool canSplit() const;
+
+		// Copy data in preparation for split.
+		Entry::ptr splitCopy();
 
 		// Split this entry.
-		virtual Entry::ptr split() = 0;
+		Entry::ptr split();
 
 		// Is this a valid entry for transfer?
-		virtual bool isValid() const;
+		bool isValid() const;
 
 		// Convert to Json.
 		std::string toJson() const;
 	};
 
 }
-
-

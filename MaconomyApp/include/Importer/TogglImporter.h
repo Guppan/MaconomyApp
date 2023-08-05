@@ -14,6 +14,10 @@ namespace Maconomy {
 
 		// Import the time log.
 		void import() override;
+
+	protected:
+		// Split function for this importer.
+		Entry::SplitFn splitFunction() const;
 	};
 
 }

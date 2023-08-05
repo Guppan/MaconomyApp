@@ -5,7 +5,6 @@
 #include "../../include/CommandOption/LogPathOption.h"
 #include "../../include/CommandOption/TimePathOption.h"
 #include "../../include/CommandOption/TransferOption.h"
-#include "../../include/CommandOption/WriteTimeLogOption.h"
 #include "../../include/CommandOption/WriteLogOption.h"
 #include "../../include/CommandOption/OptionConstants.h"
 
@@ -55,12 +54,6 @@ std::unique_ptr<CommandOption> Maconomy::optionFactory(OptionParam& param) {
 			LOGPATH_KEY,
 			2000,
 			V_{ CONFIG_KEY });
-
-	} else if (key == WRITETIMELOG_KEY && param.internal) {
-		option = std::make_unique<WriteTimeLogOption>(
-			WRITETIMELOG_KEY,
-			200,
-			V_{ IMPORTER_KEY });
 
 	} else if (key == WRITELOG_KEY && param.internal) {
 		option = std::make_unique<WriteLogOption>(
