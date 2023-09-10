@@ -3,15 +3,9 @@
 
 namespace Maconomy {
 
-	// Simple split function.
-	// Divides times in half.
-	Entry::ptr simpleSplitFn(Entry* entry);
+	// Typedefs.
+	typedef Entry::ptr(*splitFn)(Entry*);
 
-	// Discrete split function.
-	// Assumes all times are in half-hour increments.
-	Entry::ptr discreteSplitFn(Entry* entry);
-
-	// Precise split function.
-	// Works on all times.
-	Entry::ptr preciseSplitFn(Entry* entry);
+	// Get a split function given a key.
+	splitFn splitStrategyFn(const std::string& key);
 }

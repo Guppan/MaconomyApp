@@ -15,13 +15,9 @@ namespace Maconomy {
 		// Use base class constructor.
 		using Importer::Importer;
 
-
+	protected:
 		// Import time log.
 		void import() override;
-
-	protected:
-		// Split function for this importer.
-		Entry::SplitFn splitFunction() const;
 
 		// Convert a time string to hours.
 		double toHours(const std::string& time) const override;

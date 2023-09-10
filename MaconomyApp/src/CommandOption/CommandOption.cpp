@@ -2,11 +2,9 @@
 #include "../../include/CommandOption/ConfigOption.h"
 #include "../../include/CommandOption/ImporterOption.h"
 #include "../../include/CommandOption/LoginOption.h"
-#include "../../include/CommandOption/LogPathOption.h"
-#include "../../include/CommandOption/TimePathOption.h"
 #include "../../include/CommandOption/TransferOption.h"
 #include "../../include/CommandOption/WriteLogOption.h"
-#include "../../include/CommandOption/OptionConstants.h"
+#include "../../include/Misc/Constants.h"
 
 
 using namespace Maconomy;
@@ -22,43 +20,31 @@ std::unique_ptr<CommandOption> Maconomy::optionFactory(OptionParam& param) {
 	if (key == LOGIN_KEY) {
 		option = std::make_unique<LoginOption>(
 			LOGIN_KEY,
-			1000,
+			3000,
 			V_{ CONFIG_KEY });
 
 	} else if (key == CONFIG_KEY) {
 		option = std::make_unique<ConfigOption>(
 			CONFIG_KEY,
-			3000,
+			5000,
 			V_{ LOGIN_KEY });
 
 	} else if (key == TRANSFER_KEY) {
 		option = std::make_unique<TransferOption>(
 			TRANSFER_KEY,
-			500,
+			2000,
 			V_{ LOGIN_KEY, CONFIG_KEY, IMPORTER_KEY });
 
 	} else if (key == IMPORTER_KEY && param.internal) {
 		option = std::make_unique<ImporterOption>(
 			IMPORTER_KEY,
-			1500,
+			4000,
 			V_{ LOGIN_KEY, CONFIG_KEY });
-
-	} else if (key == TIMEPATH_KEY) {
-		option = std::make_unique<TimePathOption>(
-			TIMEPATH_KEY,
-			2000,
-			V_{ CONFIG_KEY });
-
-	} else if (key == LOGPATH_KEY) {
-		option = std::make_unique<LogPathOption>(
-			LOGPATH_KEY,
-			2000,
-			V_{ CONFIG_KEY });
 
 	} else if (key == WRITELOG_KEY && param.internal) {
 		option = std::make_unique<WriteLogOption>(
 			WRITELOG_KEY,
-			200,
+			1000,
 			V_{ IMPORTER_KEY });
 
 	}

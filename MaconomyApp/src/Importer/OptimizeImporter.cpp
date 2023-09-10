@@ -1,7 +1,6 @@
 #include "../../include/Importer/OptimizeImporter.h"
 #include "../../include/Config/Config.h"
-#include "../../include/Importer/SplitFunctions.h"
-#include "../../include/Importer/ImporterConstants.h"
+#include "../../include/Misc/Constants.h"
 
 #include <fstream>
 #include <iostream>
@@ -76,7 +75,7 @@ void OptimizeImporter::import() {
 		if (isTotalLine(line)) break;
 
 		if (isTaskLine(line)) {
-			entry = createEntry();
+			entry = std::make_unique<Entry>();
 			
 			if (!setData(line, entry.get())) { entry->valid = false; continue; }
 			if (!setTimes(file, entry.get())) { entry->valid = false; continue; }
@@ -87,15 +86,6 @@ void OptimizeImporter::import() {
 	}
 
 	file.close();
-
-	splitEntries();
-	setJobAndTask();
-}
-
-
-// Split function for this importer.
-Entry::SplitFn OptimizeImporter::splitFunction() const {
-	return &simpleSplitFn;
 }
 
 

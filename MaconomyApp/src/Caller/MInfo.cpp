@@ -1,4 +1,5 @@
 #include "../../include/Caller/MInfo.h"
+#include "../../include/Misc/Functionality.h"
 #include "../../include/Remote/json.hpp"
 
 #include <iostream>
@@ -65,14 +66,20 @@ void MInfo::setConcurrencyToken() {
 	_concurrencyToken = header->value;
 }
 
-#include <iostream>
-using namespace std;
+
 // Set the instance id.
 void MInfo::setInstanceId() {
 	if (_responseData.empty()) return;
 
 	json parsed = json::parse(_responseData);
-	parsed["meta"]["containerInstanceId"].get_to(_instanceId);
+	JsonAccess access(&parsed);
+	json* res = access["meta"]["containerInstanceId"].get();
+
+	if (!res) {
+		std::cerr << "setInstanceId() - Failed to fetch instance id" << std::endl;
+		return;
+	}
+	res->get_to(_instanceId);
 }
 
 
@@ -81,7 +88,14 @@ void MInfo::setEmployeeNumber() {
 	if (_responseData.empty()) return;
 
 	json parsed = json::parse(_responseData);
-	parsed["panes"]["card"]["records"][0]["data"]["employeenumber"].get_to(_employeeNumber);
+	JsonAccess access(&parsed);
+	json* res = access["panes"]["card"]["records"][0]["data"]["employeenumber"].get();
+
+	if (!res) {
+		std::cerr << "setEmployeeNumber() - Failed to fetch employee number" << std::endl;
+		return;
+	}
+	res->get_to(_employeeNumber);
 }
 
 
@@ -90,8 +104,16 @@ void MInfo::setRowCount() {
 	if (_responseData.empty()) return;
 
 	json parsed = json::parse(_responseData);
-	parsed["panes"]["table"]["meta"]["rowCount"].get_to(_rowCount);
+	JsonAccess access(&parsed);
+	json* res = access["panes"]["table"]["meta"]["rowCount"].get();
+
+	if (!res) {
+		std::cerr << "setRowCount() - Failed to fetch row count" << std::endl;
+		return;
+	}
+	res->get_to(_rowCount);
 }
+
 
 // Set the response data.
 void MInfo::setResponseData(std::string&& data) {

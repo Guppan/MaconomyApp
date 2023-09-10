@@ -4,6 +4,7 @@
 #include <string>
 #include <unordered_map>
 
+
 namespace Maconomy {
 
 	class Config
@@ -21,6 +22,15 @@ namespace Maconomy {
 
         // Default Spec3.
         std::string _spec3;
+
+        // Importer mode.
+        std::string _importerMode;
+
+        // Time rounding strategy.
+        std::string _roundStrategy;
+
+        // Time splitting strategy.
+        std::string _splitStrategy;
 
     public:
         // Time log file path.
@@ -45,6 +55,15 @@ namespace Maconomy {
 
         // Get spec3.
         const std::string& spec3() const;
+
+        // Get importer mode.
+        const std::string& importerMode() const;
+
+        // Get rounding strategy.
+        const std::string& roundStrategy() const;
+
+        // Get splitting strategy.
+        const std::string& splitStrategy() const;
 	};
 
 }

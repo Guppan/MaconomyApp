@@ -29,12 +29,12 @@ namespace Maconomy {
 
 	public:
 		// Constructor/Destructor.
-		Importer(Config* config)
-			: _config{ config } {};
+		Importer(Config* config);
 		virtual ~Importer() = default;
 
-		// Import time log.
-		virtual void import() { }
+
+		// Run the importer.
+		void run();
 
 		// Get Maconomy entries.
 		std::vector<Entry*> getEntries();
@@ -43,17 +43,18 @@ namespace Maconomy {
 		void writeToLog() const;
 
 	protected:
-		// Split function for this importer.
-		virtual Entry::SplitFn splitFunction() const = 0;
+		// Import time log.
+		virtual void import() = 0;
 
 		// Convert a time string to hours.
 		virtual double toHours(const std::string& time) const;
 
-		// Get a new entry instance.
-		Entry::ptr createEntry();
-
 		// Insert an entry into the entries map.
 		void insertEntry(Entry::ptr entry);
+
+	private:
+		// Execute rounding strategy.
+		void executeRoundingStrategy();
 
 		// Split entries.
 		void splitEntries();
@@ -61,5 +62,8 @@ namespace Maconomy {
 		// Set Maconomy job and task.
 		void setJobAndTask();
 	};
+
+	// Importer factory.
+	Importer::ptr importerFactory(Config* config);
 
 }

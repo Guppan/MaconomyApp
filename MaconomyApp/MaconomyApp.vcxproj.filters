@@ -37,9 +37,6 @@
     <Filter Include="Unit test files\TextImporter">
       <UniqueIdentifier>{8a5a61a6-00e7-4ff8-8784-cb3c98f42691}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Unit test files\TextConfig">
-      <UniqueIdentifier>{91b81700-7c4f-4802-b7cb-89ea95a9fccc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Caller">
       <UniqueIdentifier>{5d640d40-bb7e-4a61-a296-867c6d93255a}</UniqueIdentifier>
     </Filter>
@@ -58,6 +55,18 @@
     <Filter Include="Header Files\UnitTesting">
       <UniqueIdentifier>{d1b9d9f2-60a5-4626-8e9f-15c0f49e8e2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Unit test files\RoundStrategy">
+      <UniqueIdentifier>{44973d18-3ca8-4dd6-816b-8518fe1a4bf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit test files\JsonConfig">
+      <UniqueIdentifier>{fbbd46ee-826f-4afa-a860-ea5ea18314d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{290e7e1b-2aba-40c3-bc65-7705caaccdcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{f550368c-4103-4b5a-9e80-3caa9f3404f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CommandOption\CommandOption.cpp">
@@ -72,13 +81,7 @@
     <ClCompile Include="src\CommandOption\LoginOption.cpp">
       <Filter>Source Files\CommandOptions</Filter>
     </ClCompile>
-    <ClCompile Include="src\CommandOption\LogPathOption.cpp">
-      <Filter>Source Files\CommandOptions</Filter>
-    </ClCompile>
     <ClCompile Include="src\CommandOption\Overlord.cpp">
-      <Filter>Source Files\CommandOptions</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CommandOption\TimePathOption.cpp">
       <Filter>Source Files\CommandOptions</Filter>
     </ClCompile>
     <ClCompile Include="src\CommandOption\TransferOption.cpp">
@@ -88,9 +91,6 @@
       <Filter>Source Files\CommandOptions</Filter>
     </ClCompile>
     <ClCompile Include="src\Config\Config.cpp">
-      <Filter>Source Files\Config</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Config\TextConfig.cpp">
       <Filter>Source Files\Config</Filter>
     </ClCompile>
     <ClCompile Include="src\Importer\Entry.cpp">
@@ -107,9 +107,6 @@
     </ClCompile>
     <ClCompile Include="src\UnitTesting\Catch_TextImporter.cpp">
       <Filter>Unit test files\TextImporter</Filter>
-    </ClCompile>
-    <ClCompile Include="src\UnitTesting\Catch_TextConfig.cpp">
-      <Filter>Unit test files\TextConfig</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
@@ -135,6 +132,24 @@
     <ClCompile Include="src\Importer\Importer.cpp">
       <Filter>Source Files\Importer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Importer\RoundStrategy.cpp">
+      <Filter>Source Files\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Config\JsonConfig.cpp">
+      <Filter>Source Files\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UnitTesting\Catch_RoundStrategy.cpp">
+      <Filter>Unit test files\RoundStrategy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UnitTesting\Catch_JsonConfig.cpp">
+      <Filter>Unit test files\JsonConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Misc\Constants.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Misc\Functionality.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CommandOption\CommandOption.h">
@@ -149,16 +164,7 @@
     <ClInclude Include="include\CommandOption\LoginOption.h">
       <Filter>Header Files\CommandOptions</Filter>
     </ClInclude>
-    <ClInclude Include="include\CommandOption\LogPathOption.h">
-      <Filter>Header Files\CommandOptions</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CommandOption\OptionConstants.h">
-      <Filter>Header Files\CommandOptions</Filter>
-    </ClInclude>
     <ClInclude Include="include\CommandOption\Overlord.h">
-      <Filter>Header Files\CommandOptions</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CommandOption\TimePathOption.h">
       <Filter>Header Files\CommandOptions</Filter>
     </ClInclude>
     <ClInclude Include="include\CommandOption\TransferOption.h">
@@ -168,9 +174,6 @@
       <Filter>Header Files\CommandOptions</Filter>
     </ClInclude>
     <ClInclude Include="include\Config\Config.h">
-      <Filter>Header Files\Config</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Config\TextConfig.h">
       <Filter>Header Files\Config</Filter>
     </ClInclude>
     <ClInclude Include="include\Importer\Entry.h">
@@ -188,9 +191,6 @@
     <ClInclude Include="include\Caller\CallInfo.h">
       <Filter>Header Files\Caller</Filter>
     </ClInclude>
-    <ClInclude Include="include\Caller\MaconomyConstants.h">
-      <Filter>Header Files\Caller</Filter>
-    </ClInclude>
     <ClInclude Include="include\Caller\MInfo.h">
       <Filter>Header Files\Caller</Filter>
     </ClInclude>
@@ -203,9 +203,6 @@
     <ClInclude Include="include\Importer\TogglImporter.h">
       <Filter>Header Files\Importer</Filter>
     </ClInclude>
-    <ClInclude Include="include\Importer\ImporterConstants.h">
-      <Filter>Header Files\Importer</Filter>
-    </ClInclude>
     <ClInclude Include="include\Importer\OptimizeImporter.h">
       <Filter>Header Files\Importer</Filter>
     </ClInclude>
@@ -215,16 +212,22 @@
     <ClInclude Include="include\Importer\SplitFunctions.h">
       <Filter>Header Files\Importer</Filter>
     </ClInclude>
+    <ClInclude Include="include\Importer\RoundStrategy.h">
+      <Filter>Header Files\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Config\JsonConfig.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\Constants.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Misc\Functionality.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="include\Config\textConfigTemplate.txt">
-      <Filter>Header Files\Config</Filter>
-    </Text>
     <Text Include="include\Importer\TimeLogTemplate.txt">
       <Filter>Header Files\Importer</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_config.txt">
-      <Filter>Unit test files\TextImporter</Filter>
     </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog1.txt">
       <Filter>Unit test files\TextImporter</Filter>
@@ -234,24 +237,6 @@
     </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog3.txt">
       <Filter>Unit test files\TextImporter</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config1.txt">
-      <Filter>Unit test files\TextConfig</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config2.txt">
-      <Filter>Unit test files\TextConfig</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config3.txt">
-      <Filter>Unit test files\TextConfig</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config4.txt">
-      <Filter>Unit test files\TextConfig</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config5.txt">
-      <Filter>Unit test files\TextConfig</Filter>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config6.txt">
-      <Filter>Unit test files\TextConfig</Filter>
     </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog4.txt">
       <Filter>Unit test files\TextImporter</Filter>
@@ -281,6 +266,12 @@
     </None>
     <None Include="src\UnitTesting\Catch_TogglImporter_timeLog2.json">
       <Filter>Unit test files\TogglImporter</Filter>
+    </None>
+    <None Include="src\UnitTesting\Catch_TextImporter_config.json">
+      <Filter>Unit test files\TextImporter</Filter>
+    </None>
+    <None Include="src\UnitTesting\Catch_JsonConfig_config1.json">
+      <Filter>Unit test files\JsonConfig</Filter>
     </None>
   </ItemGroup>
 </Project>

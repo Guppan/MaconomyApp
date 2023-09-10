@@ -2,7 +2,7 @@
 #include "../../include/Caller/MInfo.h"
 #include "../../include/Caller/CallInfo.h"
 #include "../../include/Importer/Entry.h"
-#include "../../include/Caller/MaconomyConstants.h"
+#include "../../include/Misc/Constants.h"
 
 #include <iostream>
 
@@ -41,11 +41,11 @@ bool Caller::login(const std::string& username,
 	struct CallInfo cInfo {};
 
 	cInfo.failOnError = false;
-	cInfo.url = AUTHORIZATION();
+	cInfo.url = maconomyAuthorization();
 	cInfo.credentials = username + ":" + password;
 	cInfo.addHeader(_info.reconnectHeader());
 
-	if (!successfulRequest(cInfo, LOGIN_ERROR)) return false;
+	if (!successfulRequest(cInfo, MACONOMY_LOGIN_ERROR)) return false;
 	_info.setReconnectToken();
 	curl_easy_reset(_handle);
 
@@ -59,7 +59,7 @@ void Caller::logout() {
 	struct CallInfo cInfo {};
 
 	cInfo.failOnError = false;
-	cInfo.url = AUTHORIZATION();
+	cInfo.url = maconomyAuthorization();
 	cInfo.addHeader(_info.authorizationHeader());
 	cInfo.addHeader(_info.logoutHeader());
 
@@ -74,12 +74,12 @@ bool Caller::updateTokens(const std::string& date) {
 	struct CallInfo cInfo {};
 
 	// Set instance id.
-	cInfo.url = INSTANCES();
+	cInfo.url = maconomyInstances();;
 	cInfo.addHeader(_info.authorizationHeader());
 	cInfo.addHeader(_info.contentTypeHeader());
 	cInfo.data = "{\"panes\":{}}";
 
-	if (!successfulRequest(cInfo, INSTANCE_ERROR)) return false;
+	if (!successfulRequest(cInfo, MACONOMY_INSTANCE_ERROR)) return false;
 	_info.setInstanceId();
 	_info.setConcurrencyToken();
 	curl_easy_reset(_handle);
@@ -87,25 +87,25 @@ bool Caller::updateTokens(const std::string& date) {
 	// Set employee number.
 	cInfo.clear();
 	cInfo.zeroPost = true;
-	cInfo.url = INSTANCE_ID(_info.instanceId()) + "/data;any";
+	cInfo.url = maconomyInstanceId(_info.instanceId()) + "/data;any";
 	cInfo.addHeader(_info.authorizationHeader());
 	cInfo.addHeader(_info.concurrencyHeader());
 	cInfo.addHeader(_info.contentTypeHeader());
 
-	if (!successfulRequest(cInfo, EMPLOYEE_NR_ERROR)) return false;
+	if (!successfulRequest(cInfo, MACONOMY_EMPLOYEE_NR_ERROR)) return false;
 	_info.setConcurrencyToken();
 	_info.setEmployeeNumber();
 	curl_easy_reset(_handle);
 
 	// Set row count.
 	cInfo.clear();
-	cInfo.url = INSTANCE_ID(_info.instanceId()) + "/data/panes/card/0";
+	cInfo.url = maconomyInstanceId(_info.instanceId()) + "/data/panes/card/0";
 	cInfo.addHeader(_info.authorizationHeader());
 	cInfo.addHeader(_info.concurrencyHeader());
 	cInfo.addHeader(_info.contentTypeHeader());
 	cInfo.data = "{\"data\":{\"datevar\":\"" + date + "\",\"employeenumbervar\":\"" + _info.employeeNumber() + "\"}}";
 
-	if (!successfulRequest(cInfo, ROW_COUNT_ERROR)) return false;
+	if (!successfulRequest(cInfo, MACONOMY_ROW_COUNT_ERROR)) return false;
 	_info.setConcurrencyToken();
 	_info.setRowCount();
 	curl_easy_reset(_handle);
@@ -125,7 +125,7 @@ void Caller::addRows(std::vector<Entry*> entries) {
 	for (auto& entry : entries) {
 		struct CallInfo cInfo {};
 
-		cInfo.url = INSTANCE_ID(_info.instanceId()) + "/data/panes/table?row=end";
+		cInfo.url = maconomyInstanceId(_info.instanceId()) + "/data/panes/table?row=end";
 		cInfo.addHeader(_info.authorizationHeader());
 		cInfo.addHeader(_info.concurrencyHeader());
 		cInfo.addHeader(_info.contentTypeHeader());

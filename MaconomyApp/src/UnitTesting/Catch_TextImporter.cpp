@@ -4,7 +4,7 @@
 #include "../../include/Remote/catch.hpp"
 #include "../../include/UnitTesting/Catch_UnitTesting.h"
 
-#include "../../include/Config/TextConfig.h"
+#include "../../include/Config/JsonConfig.h"
 #include "../../include/Importer/TextImporter.h"
 
 #include <iostream>
@@ -16,23 +16,24 @@ using namespace UnitTest;
 
 
 TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
+	
 	const std::string path{ "src/UnitTesting/Catch_TextImporter_" };
 
-	const std::string configPath{ path + "config.txt" };
-	Config::ptr config = std::make_unique<TextConfig>();
-
+	const std::string configPath{ path + "config.json" };
+	Config::ptr config = std::make_unique<JsonConfig>();
+	
 	REQUIRE(config->import(configPath));
 
 	Importer::ptr importer = std::make_unique<TextImporter>(config.get());
 	refSet set{};
-
+	
 	SECTION("Importing empty time log") {
 		config->timeLogPath = path + "timeLog1.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
 
 		testEntries(res, set, 0);
 	}
-
+	
 	SECTION("Importing single valid entry time log") {
 		config->timeLogPath = path + "timeLog2.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
@@ -41,7 +42,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 
 		testEntries(res, set, 1);
 	}
-
+	
 	SECTION("Importing multiple same job entries") {
 		config->timeLogPath = path + "timeLog3.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
@@ -50,7 +51,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 
 		testEntries(res, set, 1);
 	}
-
+	
 	SECTION("Importing two jobs simple") {
 		config->timeLogPath = path + "timeLog4.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
@@ -60,7 +61,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 
 		testEntries(res, set, 2);
 	}
-
+	
 	SECTION("Importing two jobs simple week") {
 		config->timeLogPath = path + "timeLog5.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
@@ -70,7 +71,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 
 		testEntries(res, set, 2);
 	}
-
+	
 	SECTION("Importing split job simple") {
 		config->timeLogPath = path + "timeLog6.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
@@ -80,7 +81,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 
 		testEntries(res, set, 2);
 	}
-
+	
 	SECTION("Importing split job complex") {
 		config->timeLogPath = path + "timeLog7.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());
@@ -92,7 +93,7 @@ TEST_CASE("Testing import of time log from text file.", "[TextImport]") {
 
 		testEntries(res, set, 4);
 	}
-
+	
 	SECTION("Importing full time log complex") {
 		config->timeLogPath = path + "timeLog8.txt";
 		std::vector<Entry*> res = importGetEntries(importer.get());

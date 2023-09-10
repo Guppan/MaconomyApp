@@ -17,7 +17,7 @@ namespace Maconomy {
 		const static int mandatory = 0;
 
 		// Number of optional arguments.
-		const static int optional = 1;
+		const static int optional = 0;
 
 	public:
 		// Use base class constructor.
@@ -32,13 +32,6 @@ namespace Maconomy {
 
 		// Execute this option and returns true if the execution can continue.
 		bool execute(State& state) override;
-
-	private:
-		// Get the current mode.
-		const std::string& mode() const;
-
-		// Get the importer.
-		std::unique_ptr<Importer> importer(Config* config) const;
     };
 
 }

@@ -6,14 +6,6 @@
 using namespace Maconomy;
 
 
-// Entry builder.
-Entry::ptr Maconomy::entryBuilder(Entry::SplitFn splitFn) {
-	std::unique_ptr<Entry> entry(new Entry());
-	entry->_splitFn = splitFn;
-	return std::move(entry);
-}
-
-
 //Constructor.
 Entry::Entry() {
 	times = std::vector<double>(5);
@@ -46,13 +38,13 @@ void Entry::merge(Entry* other) {
 
 // Can this entry be splitted?
 bool Entry::canSplit() const {
-	return jobNumber.size() > 1 && _splitFn;
+	return jobNumber.size() > 1;
 }
 
 
 // Copy data in preparation for split.
 Entry::ptr Entry::splitCopy() {
-	Entry::ptr other = entryBuilder(_splitFn);
+	Entry::ptr other = std::make_unique<Entry>();
 
 	other->description = description;
 	other->taskName = taskName;
@@ -65,8 +57,8 @@ Entry::ptr Entry::splitCopy() {
 
 
 // Split this entry.
-Entry::ptr Entry::split() {
-	return _splitFn(this);
+Entry::ptr Entry::split(Entry::ptr(*splitFn)(Entry*)) {
+	return splitFn(this);
 }
 
 

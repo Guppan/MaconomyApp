@@ -13,7 +13,7 @@ namespace Maconomy {
 		const static int mandatory = 1;
 
 		// Number of optional arguments.
-		const static int optional = 1;
+		const static int optional = 0;
 
 	public:
 		// Use base class constructor.
@@ -32,9 +32,6 @@ namespace Maconomy {
 	private:
 		// Get the config file path.
 		const std::string& filePath() const;
-
-		// Get the current mode.
-		const std::string& mode() const;
 
 		// Get the config to use.
 		Config::ptr config() const;

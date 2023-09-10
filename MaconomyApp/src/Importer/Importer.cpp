@@ -1,6 +1,13 @@
 #include "../../include/Importer/Importer.h"
+#include "../../include/Importer/TextImporter.h"
+#include "../../include/Importer/TogglImporter.h"
+#include "../../include/Importer/OptimizeImporter.h"
 #include "../../include/Importer/Entry.h"
+#include "../../include/Importer/RoundStrategy.h"
+#include "../../include/Importer/SplitFunctions.h"
 #include "../../include/Config/Config.h"
+#include "../../include/Misc/Constants.h"
+
 
 #include <fstream>
 #include <iostream>
@@ -8,6 +15,40 @@
 
 
 using namespace Maconomy;
+
+
+// Importer factory.
+Importer::ptr Maconomy::importerFactory(Config* config) {
+	Importer::ptr ptr = nullptr;
+
+	if (config) {
+		const std::string& mode = config->importerMode();
+
+		if (mode == IMPORTER_MODE_TEXT) {
+			ptr = std::make_unique<TextImporter>(config);
+		} else if (mode == IMPORTER_MODE_TOGGL) {
+			ptr = std::make_unique<TogglImporter>(config);
+		} else if (mode == IMPORTER_MODE_OPTIMIZE) {
+			ptr = std::make_unique<OptimizeImporter>(config);
+		}
+	}
+
+	return std::move(ptr);
+}
+
+
+// Constructor.
+Importer::Importer(Config* config)
+	: _config{ config } {}
+
+
+// Run the importer.
+void Importer::run() {
+	import();
+	executeRoundingStrategy();
+	splitEntries();
+	setJobAndTask();
+}
 
 
 // Get Maconomy entries.
@@ -54,9 +95,28 @@ void Importer::writeToLog() const {
 }
 
 
-// Get a new entry instance.
-Entry::ptr Importer::createEntry() {
-	return entryBuilder(splitFunction());
+// Convert a time string (hh:mm:ss) to hours.
+double Importer::toHours(const std::string& time) const {
+	static const std::vector<double> divs{ 1.0, 60.0, 3600.0 };
+
+	double res{};
+	const std::size_t size = time.size();
+	std::string tmp{};
+
+	for (std::size_t i{}, divsIdx{}; (i < size && divsIdx < divs.size()); ++i) {
+		const bool end{ i == size - 1 };
+		const char c = time[i];
+
+		if (!isdigit(c) || end) {
+			if (isdigit(c) && end) tmp.push_back(c);
+			res += std::stod(tmp) / divs[divsIdx++];
+			tmp.clear();
+			continue;
+		}
+		tmp.push_back(c);
+	}
+
+	return res;
 }
 
 
@@ -74,8 +134,45 @@ void Importer::insertEntry(Entry::ptr entry) {
 }
 
 
+// Execute rounding strategy.
+void Importer::executeRoundingStrategy() {
+	// Get the rounding function. 
+	roundFn strategy = roundStrategyFn(_config->roundStrategy());
+	if (!strategy) return;
+
+	// Create a time entry matrix and index mapping.
+	Matrix2D matrix{};
+	std::unordered_map<std::string, int> indexMap{};
+
+	int index{};
+	for (auto it = _entries.cbegin(); it != _entries.cend(); ++it) {
+		if (!it->second->isValid()) continue;
+
+		matrix.push_back(it->second->times);
+		indexMap[it->first] = index++;
+	}
+
+	// Replace entry times with the rounded times.
+	matrix = strategy(matrix);
+	for (auto it = indexMap.cbegin(); it != indexMap.cend(); ++it) {
+		auto it2 = _entries.find(it->first);
+		if (it2 == _entries.end()) continue;
+
+		int index = it->second;
+		if (index < 0 || index >= matrix.size()) continue;
+
+		Entry* entry = it2->second.get();
+		entry->times = matrix[index];
+	}
+}
+
+
 // Split entries.
 void Importer::splitEntries() {
+	// Get the split function.
+	splitFn strategy = splitStrategyFn(_config->splitStrategy());
+	if (!strategy) return;
+
 	std::vector<std::string> keys{};
 	for (auto it = _entries.cbegin(); it != _entries.cend(); ++it) {
 		if (it->second->canSplit()) keys.push_back(it->first);
@@ -89,7 +186,7 @@ void Importer::splitEntries() {
 		}
 
 		Entry::ptr current = std::move(it->second);
-		Entry::ptr newEntry = current->split();
+		Entry::ptr newEntry = current->split(strategy);
 
 		// Remove current from entries since the key has changed after split.
 		_entries.erase(key);
@@ -145,29 +242,4 @@ void Importer::setJobAndTask() {
 			insertEntry(std::move(entry));
 		}
 	}
-}
-
-
-// Convert a time string (hh:mm:ss) to hours.
-double Importer::toHours(const std::string& time) const {
-	static const std::vector<double> divs{ 1.0, 60.0, 3600.0 };
-
-	double res{};
-	const std::size_t size = time.size();
-	std::string tmp{};
-
-	for (std::size_t i{}, divsIdx{}; (i < size && divsIdx < divs.size()); ++i) {
-		const bool end{ i == size - 1 };
-		const char c = time[i];
-
-		if (!isdigit(c) || end) {
-			if (isdigit(c) && end) tmp.push_back(c);
-			res += std::stod(tmp) / divs[divsIdx++];
-			tmp.clear();
-			continue;
-		}
-		tmp.push_back(c);
-	}
-
-	return res;
 }

@@ -1,8 +1,8 @@
 #include "../../include/CommandOption/ConfigOption.h"
 #include "../../include/CommandOption/Overlord.h"
-#include "../../include/CommandOption/OptionConstants.h"
-#include "../../include/Config/TextConfig.h"
+#include "../../include/Misc/Constants.h"
 #include "../../include/Importer/TextImporter.h"
+#include "../../include/Config/JsonConfig.h"
 
 #include <algorithm>
 #include <fstream>
@@ -18,16 +18,7 @@ bool ConfigOption::validate() const {
 
 	// Check if config file exists.
 	std::ifstream file(_args.front());
-	if (!file.good()) return false;
-
-	// Check if mode is okay.
-	if (_args.size() > mandatory) {
-		const std::string& mode = _args.back();
-		
-		auto it = std::find(MODES.cbegin(), MODES.cend(), mode);
-		if (it == MODES.cend()) return false;
-	}
-	return true;
+	return file.good();
 }
 
 
@@ -36,7 +27,7 @@ CommandOption::vector ConfigOption::optionSpawner() const {
 	CommandOption::vector vec;
 
 	// Spawn importer.
-	OptionParam param{ IMPORTER_KEY, { mode() }, true };
+	OptionParam param{ IMPORTER_KEY, { }, true };
 	vec.emplace_back(optionFactory(param));
 
 	return vec;
@@ -60,15 +51,8 @@ const std::string& ConfigOption::filePath() const {
 }
 
 
-// Get the current mode.
-const std::string& ConfigOption::mode() const {
-	if (_args.size() > mandatory) return _args.back();
-	return TEXT_MODE;
-}
-
-
 // Get the config to use.
 Config::ptr ConfigOption::config() const {
-	// Currently all modes uses TextConfig.
-	return std::make_unique<TextConfig>();
+	// Currently all modes uses JsonConfig.
+	return std::make_unique<JsonConfig>();
 }

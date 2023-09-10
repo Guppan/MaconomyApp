@@ -205,22 +205,24 @@
     <ClCompile Include="src\CommandOption\ConfigOption.cpp" />
     <ClCompile Include="src\CommandOption\ImporterOption.cpp" />
     <ClCompile Include="src\CommandOption\LoginOption.cpp" />
-    <ClCompile Include="src\CommandOption\LogPathOption.cpp" />
     <ClCompile Include="src\CommandOption\Overlord.cpp" />
-    <ClCompile Include="src\CommandOption\TimePathOption.cpp" />
     <ClCompile Include="src\CommandOption\TransferOption.cpp" />
     <ClCompile Include="src\CommandOption\WriteLogOption.cpp" />
     <ClCompile Include="src\Config\Config.cpp" />
-    <ClCompile Include="src\Config\TextConfig.cpp" />
+    <ClCompile Include="src\Config\JsonConfig.cpp" />
     <ClCompile Include="src\Importer\Entry.cpp" />
     <ClCompile Include="src\Importer\Importer.cpp" />
     <ClCompile Include="src\Importer\OptimizeImporter.cpp" />
+    <ClCompile Include="src\Importer\RoundStrategy.cpp" />
     <ClCompile Include="src\Importer\SplitFunctions.cpp" />
     <ClCompile Include="src\Importer\TextImporter.cpp" />
     <ClCompile Include="src\Importer\TogglImporter.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Misc\Constants.cpp" />
+    <ClCompile Include="src\Misc\Functionality.cpp" />
+    <ClCompile Include="src\UnitTesting\Catch_JsonConfig.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_OptimizeImporter.cpp" />
-    <ClCompile Include="src\UnitTesting\Catch_TextConfig.cpp" />
+    <ClCompile Include="src\UnitTesting\Catch_RoundStrategy.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_TextImporter.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_TogglImporter.cpp" />
     <ClCompile Include="src\UnitTesting\Catch_UnitTesting.cpp" />
@@ -228,69 +230,31 @@
   <ItemGroup>
     <ClInclude Include="include\Caller\Caller.h" />
     <ClInclude Include="include\Caller\CallInfo.h" />
-    <ClInclude Include="include\Caller\MaconomyConstants.h" />
     <ClInclude Include="include\Caller\MInfo.h" />
     <ClInclude Include="include\CommandOption\CommandOption.h" />
     <ClInclude Include="include\CommandOption\ConfigOption.h" />
     <ClInclude Include="include\CommandOption\ImporterOption.h" />
     <ClInclude Include="include\CommandOption\LoginOption.h" />
-    <ClInclude Include="include\CommandOption\LogPathOption.h" />
-    <ClInclude Include="include\CommandOption\OptionConstants.h" />
     <ClInclude Include="include\CommandOption\Overlord.h" />
-    <ClInclude Include="include\CommandOption\TimePathOption.h" />
     <ClInclude Include="include\CommandOption\TransferOption.h" />
     <ClInclude Include="include\CommandOption\WriteLogOption.h" />
     <ClInclude Include="include\Config\Config.h" />
-    <ClInclude Include="include\Config\TextConfig.h" />
+    <ClInclude Include="include\Config\JsonConfig.h" />
     <ClInclude Include="include\Importer\Entry.h" />
     <ClInclude Include="include\Importer\Importer.h" />
-    <ClInclude Include="include\Importer\ImporterConstants.h" />
     <ClInclude Include="include\Importer\OptimizeImporter.h" />
+    <ClInclude Include="include\Importer\RoundStrategy.h" />
     <ClInclude Include="include\Importer\SplitFunctions.h" />
     <ClInclude Include="include\Importer\TextImporter.h" />
     <ClInclude Include="include\Importer\TogglImporter.h" />
+    <ClInclude Include="include\Misc\Constants.h" />
+    <ClInclude Include="include\Misc\Functionality.h" />
     <ClInclude Include="include\Remote\catch.hpp" />
     <ClInclude Include="include\Remote\json.hpp" />
     <ClInclude Include="include\UnitTesting\Catch_UnitTesting.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="include\Config\textConfigTemplate.txt" />
     <Text Include="include\Importer\TimeLogTemplate.txt" />
-    <Text Include="src\UnitTesting\Catch_TextConfig_config1.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config2.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config3.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config4.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config5.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextConfig_config6.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
-    </Text>
-    <Text Include="src\UnitTesting\Catch_TextImporter_config.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
-    </Text>
     <Text Include="src\UnitTesting\Catch_TextImporter_timeLog1.txt">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </DeploymentContent>
@@ -328,11 +292,19 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\UnitTesting\Catch_JsonConfig_config1.json">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
+    </None>
     <None Include="src\UnitTesting\Catch_OptimizeImporter_timeLog1.html">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
     </None>
     <None Include="src\UnitTesting\Catch_OptimizeImporter_timeLog2.html">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
+    </None>
+    <None Include="src\UnitTesting\Catch_TextImporter_config.json">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='UnitTesting|x64'">true</DeploymentContent>
     </None>

@@ -1,6 +1,5 @@
 #include "../../include/Importer/TextImporter.h"
 #include "../../include/Config/Config.h"
-#include "../../include/Importer/SplitFunctions.h"
 
 #include <algorithm>
 #include <fstream>
@@ -78,7 +77,7 @@ void TextImporter::import() {
                 break;
             }
 
-            if (!entry) entry = createEntry();
+            if (!entry) entry = std::make_unique<Entry>();
             entry->raw.push_back(arg);
 
             switch (column) {
@@ -121,15 +120,6 @@ void TextImporter::import() {
     }
 
     file.close();
-
-    splitEntries();
-    setJobAndTask();
-}
-
-
-// Split function for this importer.
-Entry::SplitFn TextImporter::splitFunction() const {
-    return &discreteSplitFn;
 }
 
 

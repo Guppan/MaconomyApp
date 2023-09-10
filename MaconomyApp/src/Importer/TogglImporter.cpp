@@ -1,7 +1,6 @@
 #include "../../include/Importer/TogglImporter.h"
-#include "../../include/Importer/SplitFunctions.h"
 #include "../../include/Config/Config.h"
-#include "../../include/Importer/ImporterConstants.h"
+#include "../../include/Misc/Constants.h"
 #include "../../include/Remote/json.hpp"
 
 #include <ctime>
@@ -74,7 +73,7 @@ void TogglImporter::import() {
 
 	json parsed = json::parse(file);
 	for (auto& elem : parsed[TOGGL_JSON_ARRAY]) {
-		Entry::ptr entry = createEntry();
+		Entry::ptr entry = std::make_unique<Entry>();
 
 		entry->description = elem[TOGGL_JSON_DESCRIPTION];
 		entry->taskName = elem[TOGGL_JSON_CLIENT];
@@ -104,14 +103,4 @@ void TogglImporter::import() {
 	}
 
 	file.close();
-
-	splitEntries();
-	setJobAndTask();
-}
-
-
-// Split function for this importer.
-Entry::SplitFn TogglImporter::splitFunction() const {
-	// TODO: Implement and return 'preciseSplitFn'.
-	return &simpleSplitFn;
 }

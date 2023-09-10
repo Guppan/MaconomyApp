@@ -4,7 +4,7 @@
 #include "../../include/Importer/TogglImporter.h"
 #include "../../include/Importer/OptimizeImporter.h"
 #include "../../include/CommandOption/Overlord.h"
-#include "../../include/CommandOption/OptionConstants.h"
+#include "../../include/Misc/Constants.h"
 
 
 using namespace Maconomy;
@@ -32,34 +32,11 @@ CommandOption::vector ImporterOption::optionSpawner() const {
 // Execute this option and returns true if the execution can continue.
 bool ImporterOption::execute(State& state) {
 	// Create the importer and set it on the state.
-	Importer::ptr ptr = importer(state.config.get());
+	Importer::ptr ptr = importerFactory(state.config.get());
 	if (!ptr) return false;
 
 	state.importer = std::move(ptr);
-	state.importer->import();
+	state.importer->run();
 
 	return true;
-}
-
-
-// Get the current mode.
-const std::string& ImporterOption::mode() const {
-	if (_args.size() > mandatory) return _args.back();
-	return TEXT_MODE;
-}
-
-
-// Get the importer.
-Importer::ptr ImporterOption::importer(Config* config) const {
-	Importer::ptr ptr = nullptr;
-	if (config) {
-		if (mode() == TEXT_MODE) {
-			ptr = std::make_unique<TextImporter>(config);
-		} else if (mode() == TOGGL_MODE) {
-			ptr = std::make_unique<TogglImporter>(config);
-		} else if (mode() == OPTIMIZE_MODE) {
-			ptr = std::make_unique<OptimizeImporter>(config);
-		}
-	}
-	return ptr;
 }

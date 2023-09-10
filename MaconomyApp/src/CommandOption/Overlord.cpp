@@ -1,6 +1,6 @@
 #include "../../include/CommandOption/Overlord.h"
 #include "../../include/CommandOption/CommandOption.h"
-#include "../../include/CommandOption/OptionConstants.h"
+#include "../../include/Misc/Constants.h"
 
 #include <algorithm>
 #include <iostream>
@@ -52,11 +52,7 @@ std::vector<OptionParam> Overlord::parse(int argc, char** argv) {
 	current.internal = false;
 	for (unsigned i{}; i < args.size(); ++i) {
 		const std::string arg = args[i];
-		auto it = std::find(OPTION_KEYS.cbegin(),
-							OPTION_KEYS.cend(),
-							arg);
-
-		if (it != OPTION_KEYS.cend()) {
+		if (inDomain(arg, OPTION_KEYS)) {
 			if (i != 0) {
 				params.push_back(current);
 				current.key.clear();

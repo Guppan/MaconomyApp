@@ -29,3 +29,21 @@ const std::string Config::getTask(const std::string& key) const {
 const std::string& Config::spec3() const {
 	return _spec3;
 }
+
+
+// Get importer mode.
+const std::string& Config::importerMode() const {
+	return _importerMode;
+}
+
+
+// Get rounding strategy.
+const std::string& Config::roundStrategy() const {
+	return _roundStrategy;
+}
+
+
+// Get split strategy.
+const std::string& Config::splitStrategy() const {
+	return _splitStrategy;
+}

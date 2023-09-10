@@ -1,3 +1,0 @@
-FILEPATHS
-C:/Users/test/timeLogFile.txt
-C:/Users/test/logFile.txt
