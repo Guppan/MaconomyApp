@@ -88,6 +88,10 @@ void MInfo::setEmployeeNumber() {
 	if (_responseData.empty()) return;
 
 	json parsed = json::parse(_responseData);
+	parsed["panes"]["card"]["records"][0]["data"]["employeenumber"].get_to(_employeeNumber);
+	return;
+
+	/* FIXME: Investigate why the JsonAccess fails.
 	JsonAccess access(&parsed);
 	json* res = access["panes"]["card"]["records"][0]["data"]["employeenumber"].get();
 
@@ -96,6 +100,7 @@ void MInfo::setEmployeeNumber() {
 		return;
 	}
 	res->get_to(_employeeNumber);
+	*/
 }
 
 

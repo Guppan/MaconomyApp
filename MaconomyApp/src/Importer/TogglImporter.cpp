@@ -8,10 +8,6 @@
 #include <iostream>
 #include <sstream>
 
-#ifndef _MSC_VER
-#include <mutex>
-#endif // _MSC_VER
-
 
 using namespace Maconomy;
 using json = nlohmann::json;
@@ -26,9 +22,6 @@ namespace {
 		#ifdef _MSC_VER
 		localtime_s(&tm, &time);
 		#else
-		// Thread safe localtime using lock.
-		static std::mutex mtx;
-		std::lock_guard<std::mutex> lock(mtx);
 		tm = *std::localtime(&time);
 		#endif // _MSC_VER
 

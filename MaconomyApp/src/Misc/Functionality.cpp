@@ -38,9 +38,9 @@ JsonAccess JsonAccess::operator[](const std::string& key) {
 }
 
 
-// Safely access the Json array with the provided index.
+// Safely access a Json array or object with the provided index.
 JsonAccess JsonAccess::operator[](const size_t index) {
-	if (!_json || !_json->is_array()) return nullptr;
+	if (!_json || !_json->is_structured()) return nullptr;
 	if (index >= _json->size()) return nullptr;
 	return &_json[index];
 }

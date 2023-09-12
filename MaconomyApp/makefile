@@ -39,6 +39,7 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 INC_CURL_FLAGS := $(addprefix -I,$(INC_CURL))
 
 CPPFLAGS := $(INC_FLAGS) $(INC_CURL_FLAGS) -MMD -MP
+CXXFLAGS := -std=c++14
 
 ifdef UNIT_TEST
 

@@ -44,7 +44,7 @@ namespace Maconomy {
 
 		// Clear.
 		void clear() {
-			verbose = false;
+			verbose = true;
 			zeroPost = false;
 			failOnError = true;
 			url.clear();

@@ -2,6 +2,7 @@
 #include "../../include/Misc/Constants.h"
 
 #include <algorithm>
+#include <cmath>
 #include <functional>
 #include <limits>
 #include <set>
@@ -61,7 +62,7 @@ namespace {
 		const double sign = std::copysign(1.0, value);
 
 		double res;
-		double fraction = modf(value, &res);
+		double fraction = std::modf(value, &res);
 
 		if (std::abs(fraction) >= 0.75) res += sign * 1.0;
 		else if (std::abs(fraction) >= 0.25) res += sign * 0.5;
