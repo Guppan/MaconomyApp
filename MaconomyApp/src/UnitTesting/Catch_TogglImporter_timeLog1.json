@@ -1,0 +1,16 @@
+{
+  "TimeEntries": [
+    {
+      "Description": "JOB-0001",
+      "StartDate": "2023-05-01",
+      "StartTime": "10:02:00",
+      "EndDate": "2023-07-27",
+      "EndTime": "10:29:30",
+      "Duration": "01:00:00",
+      "IsBillable": true,
+      "ProjectName": "SE",
+      "ClientName": "Task1",
+      "TagNames": []
+    }
+  ]
+}

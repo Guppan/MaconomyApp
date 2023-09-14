@@ -142,9 +142,9 @@ void Importer::executeRoundingStrategy() {
 
 	// Create a time entry matrix and index mapping.
 	Matrix2D matrix{};
-	std::unordered_map<std::string, int> indexMap{};
+	std::unordered_map<std::string, size_t> indexMap{};
 
-	int index{};
+	size_t index{};
 	for (auto it = _entries.cbegin(); it != _entries.cend(); ++it) {
 		if (!it->second->isValid()) continue;
 
@@ -158,7 +158,7 @@ void Importer::executeRoundingStrategy() {
 		auto it2 = _entries.find(it->first);
 		if (it2 == _entries.end()) continue;
 
-		int index = it->second;
+		size_t index = it->second;
 		if (index < 0 || index >= matrix.size()) continue;
 
 		Entry* entry = it2->second.get();

@@ -26,8 +26,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-UnitTesting/
-MaconomyApp/build/
+/UnitTesting/
+/MaconomyApp/UnitTesting/
+/MaconomyApp/build/
 TestCases/
 
 # Visual Studio 2015/2017 cache/options directory

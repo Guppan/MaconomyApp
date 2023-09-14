@@ -1,0 +1,75 @@
+{
+  "strategies": {
+    "round-strategy": "simple",
+    "split-strategy": "discrete"
+  },
+  "defaults": {
+    "spec3": "Developer"
+  },
+  "definitions": [
+    {
+      "local-job": "SE",
+      "remote-job": "J1",
+      "tasks": [
+        {
+          "local-task": "Task1",
+          "remote-task": "T1"
+        },
+        {
+          "local-task": "Task2",
+          "remote-task": "T2"
+        },
+        {
+          "local-task": "Task3",
+          "remote-task": "T3"
+        }
+      ]
+    },
+    {
+      "local-job": "NO",
+      "remote-job": "J2",
+      "tasks": [
+        {
+          "local-task": "Task1",
+          "remote-task": "T1"
+        },
+        {
+          "local-task": "Task2",
+          "remote-task": "T2"
+        },
+        {
+          "local-task": "Task3",
+          "remote-task": "T3"
+        }
+      ]
+    },
+    {
+      "local-job": "DK",
+      "remote-job": "J3",
+      "tasks": [
+        {
+          "local-task": "Task1",
+          "remote-task": "T1"
+        },
+        {
+          "local-task": "Task2",
+          "remote-task": "T2"
+        }
+      ]
+    },
+    {
+      "local-job": "FN",
+      "remote-job": "J4",
+      "tasks": [
+        {
+          "local-task": "Task1",
+          "remote-task": "T1"
+        },
+        {
+          "local-task": "Task2",
+          "remote-task": "T2"
+        }
+      ]
+    }
+  ]
+}
