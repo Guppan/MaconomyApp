@@ -36,7 +36,7 @@ namespace {
 		for (int i{}; std::getline(ss, tmp, '-'); ++i) {
 			switch (i) {
 				case 0: { tm.tm_year = std::stoi(tmp) - 1900; break; }
-				case 1: { tm.tm_mday = std::stoi(tmp) - 1; break; }
+				case 1: { tm.tm_mon = std::stoi(tmp) - 1; break; }
 				case 2: { tm.tm_mday = std::stoi(tmp); break; }
 				default: {
 					std::cerr << "weekday(..) - Ill formed date string" << std::endl;
@@ -47,7 +47,10 @@ namespace {
 
 		std::time_t time = std::mktime(&tm);
 		std::tm res = localtime_safe(time);
-		return res.tm_wday;
+ 
+		// Monday is index 0 in Maconomy but index 1 from std::tm.
+		const int day{ (res.tm_wday - 1) % 7 };
+		return day < 0 ? day + 7 : day;
 	}
 
 }
