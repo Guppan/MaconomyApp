@@ -72,10 +72,10 @@ void TogglImporter::import() {
 		Entry::ptr entry = std::make_unique<Entry>();
 
 		entry->description = elem[TOGGL_JSON_DESCRIPTION];
-		entry->taskName = elem[TOGGL_JSON_CLIENT];
+		entry->taskName = elem[TOGGL_JSON_PROJECT];
 
 		std::istringstream ss;
-		ss.str(elem[TOGGL_JSON_PROJECT]);
+		ss.str(elem[TOGGL_JSON_CLIENT]);
 		std::string job;
 		while (std::getline(ss, job, TOGGL_JOB_DELIMITER)) {
 			entry->jobNumber.push_back(job);
