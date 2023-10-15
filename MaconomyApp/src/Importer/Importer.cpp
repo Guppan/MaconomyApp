@@ -88,7 +88,7 @@ void Importer::writeToLog() const {
 		out << "Description: " << entry->description << '\n';
 		out << "Job name(s): ";
 		for (const auto& job : entry->jobNumber) out << job << ' ';
-		out << "\nTask name:   " << entry->taskName << '\n\n';
+		out << "\nTask name:   " << entry->taskName << "\n\n";
 	}
 
 	out.close();

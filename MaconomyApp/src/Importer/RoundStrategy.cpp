@@ -228,9 +228,9 @@ namespace {
 
 // Get a rounding strategy function given a key.
 roundFn Maconomy::roundStrategyFn(const std::string& key) {
-	if (key == ROUND_SIMPLE_STRATEGY) return &simpleRoundStrategy;
-	if (key == ROUND_ADJUST_UP_STRATEGY) return &adjustUpStrategy;
-	if (key == ROUND_ADJUST_DOWN_STRATEGY) return &adjustDownStrategy;
-	if (key == ROUND_ADJUST_STRATEGY) return &adjustStrategy;
+	//if (key == ROUND_SIMPLE_STRATEGY) return &simpleRoundStrategy;
+	//if (key == ROUND_ADJUST_UP_STRATEGY) return &adjustUpStrategy;
+	//if (key == ROUND_ADJUST_DOWN_STRATEGY) return &adjustDownStrategy;
+	//if (key == ROUND_ADJUST_STRATEGY) return &adjustStrategy;
 	return nullptr;
 }
